@@ -9,7 +9,7 @@
         y0: 48,
         w: this.gm.gameOptions.fullscreen ? 375 : 768,
         h: this.gm.gameOptions.fullscreen ? 559 - 48 : 500 - 48,
-        middleX: this.gm.gameOptions.fullscreen ? 279 : 384
+        middleX: this.gm.gameOptions.fullscreen ? 187 : 384
       };
       this.draw_bg();
     }
@@ -125,11 +125,9 @@
 
     One_waterlily.prototype.make_waterlily = function(h, x0, y0, scale) {
       var c, foo, i, ref;
-      c = this.wl.create(x0, y0, "cylinder");
+      c = this.gm.add.sprite(x0, y0, "cylinder");
       this.cldr.push(c);
       c.anchor.setTo(.5, 1);
-      c.body.setSize(12, 25, 84, 0);
-      c.body.immovable = true;
       c.alpha = this.prm.init ? 1 : .1;
       this.position.bottom = {
         x: x0,
@@ -137,11 +135,9 @@
       };
       for (foo = i = 0, ref = h - 2; 0 <= ref ? i <= ref : i >= ref; foo = 0 <= ref ? ++i : --i) {
         y0 -= this.glob.cylinder.h;
-        c = this.wl.create(x0, y0, "cylinder");
+        c = this.gm.add.sprite(x0, y0, "cylinder");
         this.cldr.push(c);
         c.anchor.setTo(.5, 1);
-        c.body.setSize(12, 25, 84, 0);
-        c.body.immovable = true;
         c.alpha = this.prm.init ? 1 : .1;
       }
       y0 -= this.glob.cylinder.h - 5;
@@ -152,10 +148,11 @@
       this.hat.body.immovable = true;
       this.hat.alpha = this.prm.init ? 1 : .1;
       this.hat.prms = this.prms;
-      return this.position.top = {
+      this.position.top = {
         x: this.hat.x,
         y: this.hat.y
       };
+      return this.gm.world.bringToTop(this.wl);
     };
 
     One_waterlily.prototype.make_tween_appear = function() {
@@ -177,14 +174,14 @@
       var c, i, len, ref;
       if (!this.prm.has_appeared) {
         this.prm.has_appeared = true;
-        this.hat.y += 50;
         this.hat.alpha = 1;
         ref = this.cldr;
         for (i = 0, len = ref.length; i < len; i++) {
           c = ref[i];
           c.alpha = 1;
         }
-        return this.appear.start();
+        this.appear.start();
+        return this.hat.y += 50;
       }
     };
 
@@ -207,6 +204,7 @@
         scale0: .65,
         dxmax: 275,
         dymax: 162,
+        tan: 162 / 275,
         way: 'left'
       };
       this.left_or_right = ['left', 'right'];
@@ -250,11 +248,14 @@
     Waterlilies.prototype.hxy_scale = function(x0, y0) {
       var dx, wway, x, y;
       wway = this.left_or_right[this.gm.rnd.integerInRange(0, 1)];
-      wway = 'right';
-      dx = this.gm.rnd.integerInRange(0, 2);
-      dx = (3 + dx) * this.glob.wly.dxmax / 7;
+      if (this.wls[0].prm.way === wway) {
+        dx = this.gm.rnd.integerInRange(1, 2);
+      } else {
+        dx = this.gm.rnd.integerInRange(2, 2);
+      }
+      dx = (3 + dx) * this.glob.wly.dxmax / 8;
       x = wway === 'left' ? x0 - dx : x0 + dx;
-      y = y0 - this.glob.wly.dymax / this.glob.wly.dxmax * dx;
+      y = y0 - this.glob.wly.tan * dx;
       return {
         h: 3,
         x: x,
@@ -272,7 +273,7 @@
         this.wls.splice(0, 1);
         this.make_lily();
       }
-      if ((spt.y - this.wls[2].position.bottom.y) < 70) {
+      if ((spt.y - this.wls[2].position.bottom.y) < 100) {
         return this.wls[2].finalize();
       }
     };
@@ -316,6 +317,7 @@
       if (this.glob.mouse.dt > this.glob.mouse.maxTime) {
         this.glob.mouse.dt = this.glob.mouse.maxTime;
       }
+      this.glob.mouse.dt = 4.5 / 7 * this.glob.mouse.dt + 250;
       this.glob.mouse.down_ms = 0;
       l = this.wls.length;
       wly = this.wls[l - 2];
@@ -326,6 +328,7 @@
       var dt, dy, wly;
       wly = this.wls[1];
       if (this.glob.mouse.down) {
+        wly.hat.bringToTop();
         dt = new Date().getTime() - this.glob.mouse.down_ms;
         dy = Math.floor(dt / this.glob.mouse.maxTime * 50);
         if (dy >= 50) {
@@ -368,37 +371,32 @@
       this.glob.spt = {
         has_collided: true,
         jumping: false,
-        max_height: 420,
+        tooLow: false,
+        max_height: 700,
         w: 72,
         h: 77,
-        message: 'not used yet'
+        message: 'not used yet',
+        angle: 15
       };
-
-      /*.----------.----------
-      @has_collided = true
-      #@vy = gameOptions.spring_power # ratio vx per 1/60 sec for jumping
-      @hit_resp = ''
-      @too_low = false
-      @is_reseting = true
-       */
       this.mouse = this.glob.mouse;
       this.glob.jmp = {
         vy: this.glob.wly.dxmax / this.glob.wly.dymax * .45,
-        vx: .45,
+        vx: .6,
         g: 700
       };
       this.spt = this.gm.add.sprite(this.wls[0].position.top.x, this.wls[0].position.top.y - 20, 'character_sprite', 6);
       this.gm.physics.arcade.enable(this.spt);
-      this.spt.body.bounce.set(0);
       this.spt.body.gravity.y = this.glob.jmp.g;
       this.spt.body.setSize(70, 30, 1, 47);
+      this.spt.scale.setTo(.8, .8);
       this.spt.anchor.setTo(0.5, 1);
-      this.spt.angle = 20;
-      this.anim_jump = this.spt.animations.add('jmp', [1, 2, 1, 0, 3], 20, false);
+      this.spt.angle = this.glob.spt.angle;
+      this.anim_jump = this.spt.animations.add('jmp', [1, 2, 1, 0, 3], 15, false);
+      this.anim_jump.onComplete.add(this.turnJ, this);
       this.anim_down = this.spt.animations.add('dwn', [0, 1, 2, 1, 0], 20, false);
       this.anim_down.onComplete.add(this.turn, this);
-      this.spt.frame = 0;
       this.make_tween_go_center_lily(1.2, 1.2);
+      this.turn();
     }
 
     Sprite.prototype.collide = function(waterlilies) {
@@ -419,6 +417,7 @@
     Sprite.prototype.when_collide = function(spt, wly) {
       var ref;
       if (!this.glob.spt.has_collided) {
+        spt.bringToTop();
         spt.body.velocity.x = 0;
         this.glob.spt.has_collided = true;
         this.glob.spt.jumping = false;
@@ -433,6 +432,8 @@
         } else {
           return this.glob.spt.message = "loose cylinder";
         }
+      } else {
+        return this.glob.spt.message = 'nothing';
       }
     };
 
@@ -444,8 +445,8 @@
         this.spt.animations.play('jmp');
         this.glob.spt.jumping = true;
         this.glob.spt.has_collided = false;
+        this.spt.y -= 20;
         this.spt.body.velocity.y = -this.mouse.dt * this.glob.jmp.vy;
-        console.log("- " + this._fle_ + " : ", this.waterliliesO.wls[1].prm.way);
         this.spt.body.velocity.x = this.waterliliesO.wls[1].prm.way === 'left' ? -this.mouse.dt * this.glob.jmp.vx : this.mouse.dt * this.glob.jmp.vx;
       }
       return this.mouse.dt = 0;
@@ -460,7 +461,11 @@
     };
 
     Sprite.prototype.check_height = function(spt) {
+      if (this.glob.spt.tooLow) {
+        return 'too low yet';
+      }
       if (spt.y > this.glob.spt.max_height) {
+        this.glob.spt.tooLow = true;
         return 'loose';
       } else {
         return 'ok';
@@ -470,10 +475,18 @@
     Sprite.prototype.turn = function() {
       if (this.wls[1].prm.way === 'left') {
         this.spt.scale.setTo(.8, .8);
-        return this.spt.angle = 20;
+        return this.spt.angle = this.glob.spt.angle;
       } else {
         this.spt.scale.setTo(-.8, .8);
-        return this.spt.angle = -20;
+        return this.spt.angle = -this.glob.spt.angle;
+      }
+    };
+
+    Sprite.prototype.turnJ = function() {
+      if (this.spt.angle > 0) {
+        return this.spt.angle = -this.glob.spt.angle;
+      } else {
+        return this.spt.angle = this.glob.spt.angle;
       }
     };
 
@@ -499,37 +512,61 @@
       this._fle_ = 'Camera';
       this.glob = this.gm.ge.parameters;
       this.offset = {
-        xl: this.glob.wly.x0,
-        xr: this.gm.gameOptions.fullscreen ? 70 : 210,
+        xl: this.glob.wly.x0 - 20,
+        xr: this.gm.gameOptions.fullscreen ? 100 : 210,
         y: this.glob.wly.y0 - 54
       };
       this.speed = 4;
     }
 
     My_camera.prototype.move = function(spt) {
-      var way;
+      var ddx, way;
       way = this.waterliliesO.wls[1].prm.way;
-      if (way === 'left') {
-        if ((this.gm.camera.x - spt.x + this.offset.xl) < -this.speed) {
-          this.gm.camera.x += this.speed;
+      ddx = way === 'left' ? this.gm.camera.x - spt.x + this.offset.xl : this.gm.camera.x - spt.x + this.offset.xr;
+      if (Math.abs(ddx) > this.speed) {
+        if (ddx > 0) {
+          this.gm.camera.x -= this.speed;
         } else {
-          this.gm.camera.x = spt.x - this.offset.xl;
+          this.gm.camera.x += this.speed;
         }
       } else {
-        if ((spt.x - this.offset.xr - this.gm.camera.x) > this.speed) {
-          this.gm.camera.x += this.speed;
-        } else {
-          this.gm.camera.x = spt.x - this.offset.xr;
-        }
+        this.gm.camera.x = way === 'left' ? spt.x - this.offset.xl : spt.x - this.offset.xr;
       }
-      if ((this.gm.camera.y - spt.y - this.offset.y) > this.speed) {
-        return this.gm.camera.y -= this.speed;
-      } else {
+      if (this.gm.camera.y > spt.y - this.offset.y) {
         return this.gm.camera.y = spt.y - this.offset.y;
       }
     };
 
     return My_camera;
+
+  })();
+
+}).call(this);
+
+(function() {
+  Phacker.Game.Effects = (function() {
+    function Effects(gm) {
+      this.gm = gm;
+      this._fle_ = 'Effect';
+      this.effects = ['effect1', 'effect3', 'effect2'];
+    }
+
+    Effects.prototype.play = function(spriteO) {
+      var n;
+      n = this.gm.rnd.integerInRange(0, 1);
+      this.eff = this.gm.add.sprite(50, 100, this.effects[n], 2);
+      this.eff.anchor.setTo(0.5, 0.5);
+      this.eff.animations.add('explode', [2, 1, 0, 1], 8, true);
+      this.eff.x = spriteO.spt.x;
+      this.eff.y = spriteO.spt.y;
+      return this.eff.animations.play('explode');
+    };
+
+    Effects.prototype.stop = function() {
+      return this.eff.destroy();
+    };
+
+    return Effects;
 
   })();
 
@@ -547,18 +584,31 @@
     }
 
     YourGame.prototype.update = function() {
+      var mess1, mess2;
       YourGame.__super__.update.call(this);
       this._fle_ = 'Jeu, update';
-      this.spriteO.collide(this.wls);
+      mess1 = this.spriteO.collide(this.wls);
+      if (mess1 === 'win') {
+        this.win();
+      }
       this.spriteO.jump();
       this.mouseO.when_down();
       this.camO.move(this.spt);
-      this.spriteO.check_height(this.spt);
+      mess2 = this.spriteO.check_height(this.spt);
+      if (mess2 === 'loose') {
+        console.log("- " + this._fle_ + " : ", mess2);
+        this.spt.destroy();
+        this.effectO.play(this.spriteO);
+        this.lostLife();
+      }
       return this.waterliliesO.add_destroy(this.spt);
     };
 
     YourGame.prototype.resetPlayer = function() {
-      return console.log("Reset the player");
+      console.log("Reset the player");
+      this.spriteO = new Phacker.Game.Sprite(this.game, this.waterliliesO);
+      this.spt = this.spriteO.spt;
+      return this.effectO.stop();
     };
 
     YourGame.prototype.create = function() {
@@ -574,6 +624,7 @@
       this.spt = this.spriteO.spt;
       this.waterliliesO.bind_spt(this.spt);
       this.camO = new Phacker.Game.My_camera(this.game, this.waterliliesO);
+      this.effectO = new Phacker.Game.Effects(this.game);
       return this.glob = this.game.ge.parameters;
     };
 

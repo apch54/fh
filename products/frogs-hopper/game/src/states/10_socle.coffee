@@ -23,7 +23,7 @@ class Phacker.Game.Socle
             y0  : 48 # background
             w   : if @gm.gameOptions.fullscreen  then 375 else 768
             h   : if @gm.gameOptions.fullscreen  then 559 - 48 else 500 - 48
-            middleX: if @gm.gameOptions.fullscreen  then 279 else 384
+            middleX: if @gm.gameOptions.fullscreen  then 187 else 384
 
         @draw_bg()
         #@draw_last_sea()

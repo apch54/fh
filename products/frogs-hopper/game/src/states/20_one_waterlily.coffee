@@ -41,21 +41,21 @@ class Phacker.Game.One_waterlily
     make_waterlily:(h, x0, y0, scale)-> # number of stem, x location & scale
 
         #h must be > 2
-        c = @wl.create x0, y0, "cylinder"
+        c = @gm.add.sprite x0, y0, "cylinder" #@wl.create x0, y0, "cylinder"
         @cldr.push c
         c.anchor.setTo  .5, 1
-        c.body.setSize(12, 25, 84, 0)# w, h, offset x, offset y
-        c.body.immovable = true
+        #c.body.setSize(12, 25, 84, 0)# w, h, offset x, offset y
+        #c.body.immovable = true
         c.alpha = if @prm.init then 1 else .1
         @position.bottom = {x: x0, y: y0 }
 
         for foo in [0.. h-2] #draw column center part
             y0 -= @glob.cylinder.h
-            c=  @wl.create x0, y0, "cylinder" # create one element of the column
+            c=  @gm.add.sprite x0, y0, "cylinder" #@wl.create x0, y0, "cylinder" # create one element of the column
             @cldr.push c
             c.anchor.setTo  .5, 1
-            c.body.setSize(12, 25, 84, 0)# w, h, offset x, offset y
-            c.body.immovable = true
+            #c.body.setSize(12, 25, 84, 0)# w, h, offset x, offset y
+            #c.body.immovable = true
             c.alpha = if @prm.init then 1 else .1
 
         y0 -= @glob.cylinder.h - 5 # draw hat comomn
@@ -69,6 +69,7 @@ class Phacker.Game.One_waterlily
 
         @hat.prms = @prms
         @position.top ={ x: @hat.x, y: @hat.y }
+        @gm.world.bringToTop(@wl)
 
     #.----------.----------
     # make tween  : appear and climb for jump
@@ -90,11 +91,11 @@ class Phacker.Game.One_waterlily
     finalize : () ->
         if not @prm.has_appeared
             @prm.has_appeared = true
-            @hat.y += 50
+
             @hat.alpha = 1
             for c in @cldr  then c.alpha = 1
             @appear.start()
-
+            @hat.y += 50
 
 
 

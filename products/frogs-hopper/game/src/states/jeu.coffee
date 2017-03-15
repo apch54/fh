@@ -15,15 +15,30 @@ class @YourGame extends Phacker.GameState
         super() #Required
         @_fle_ = 'Jeu, update'
 
-        @spriteO.collide @wls
+        mess1 = @spriteO.collide @wls
+        if mess1 is 'win' then @win()
+
+        #console.log "- #{@_fle_} : ",mess
         @spriteO.jump()
         @mouseO.when_down()
         @camO.move @spt
-        @spriteO.check_height(@spt)
+
+        mess2 = @spriteO.check_height(@spt)
+        if mess2 is 'loose'
+            console.log "- #{@_fle_} : ",mess2
+            @spt.destroy()
+            @effectO.play @spriteO
+            @lostLife()
+
         @waterliliesO.add_destroy @spt
 
     resetPlayer: ->
         console.log "Reset the player"
+        @spriteO = new Phacker.Game.Sprite @game, @waterliliesO
+        @spt = @spriteO.spt
+        @effectO.stop() # destroy effect
+        #@bonus_sound.play()
+        #@spriteO.reset()
 
     create: ->
         super() #Required
@@ -45,6 +60,7 @@ class @YourGame extends Phacker.GameState
         @waterliliesO.bind_spt @spt
 
         @camO = new Phacker.Game.My_camera @game , @waterliliesO
+        @effectO = new Phacker.Game.Effects @game
 
         @glob = @game.ge.parameters
 

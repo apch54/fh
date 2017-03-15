@@ -25,6 +25,9 @@ class Phacker.Game.My_mouse
         @glob.mouse.down = false
         @glob.mouse.dt = new Date().getTime() - @glob.mouse.down_ms
         if @glob.mouse.dt > @glob.mouse.maxTime then  @glob.mouse.dt = @glob.mouse.maxTime
+        # mini 250ms
+        @glob.mouse.dt = 4.5 / 7 * @glob.mouse.dt + 250
+
         @glob.mouse.down_ms = 0
 
         l = @wls.length
@@ -40,11 +43,13 @@ class Phacker.Game.My_mouse
         #l = @wls.length
         wly = @wls[1]
         if  @glob.mouse.down #and @mouse.down_ms > 0
+            wly.hat.bringToTop()
             dt = new Date().getTime() - @glob.mouse.down_ms
 
             dy = Math.floor(dt / @glob.mouse.maxTime * 50)
             if dy >= 50 then dy= 50
             wly.hat.y = wly.position.top.y + dy
+
 
 
     #.----------.----------

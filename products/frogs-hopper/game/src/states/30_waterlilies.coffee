@@ -11,6 +11,7 @@ class Phacker.Game.Waterlilies
             scale0: .65 #scale
             dxmax: 275  # maximum waterlily dx
             dymax: 162
+            tan: 162 / 275
             way: 'left'
 
         @left_or_right = ['left', 'right']
@@ -39,14 +40,16 @@ class Phacker.Game.Waterlilies
     # determine height,x,....
     #.----------.----------
     hxy_scale:(x0, y0)->
-
         wway = @left_or_right[@gm.rnd.integerInRange(0,1)]
-        wway = 'right'
+        #wway = 'right'
 
-        dx = @gm.rnd.integerInRange 0, 2
-        dx = (3 + dx)* @glob.wly.dxmax / 7
+        # @wls[2] is right over @wls[0] so put it a little far away
+        if @wls[0].prm.way is wway then  dx = @gm.rnd.integerInRange 1, 2
+        else dx = @gm.rnd.integerInRange 2, 2
+
+        dx = (3 + dx)* @glob.wly.dxmax / 8
         x  = if wway is 'left' then  x0 - dx else  x0 + dx
-        y  = y0 - @glob.wly.dymax / @glob.wly.dxmax * dx
+        y  = y0 - @glob.wly.tan * dx
 
         return { h:3, x:x, y:y, scale:@glob.wly.scale0, way:wway } # s is scale
 
@@ -54,7 +57,7 @@ class Phacker.Game.Waterlilies
     # add_destroy lilies
     #.----------.----------
     add_destroy: (spt)->
-
+        #if @wls[2]? then console.log "- #{@_fle_} : ",@wls[0].position.top.y - @wls[0].hat.height - @wls[2].position.bottom.y, @spt.y
         w = @wls[0]
         if w.position.top.y - spt.y > 80 # 80 is pxl number  :  is waterlilie  80 pxl beneath sprite?
            w.wl.destroy()
@@ -62,7 +65,9 @@ class Phacker.Game.Waterlilies
            @make_lily()
 
         #console.log "- #{@_fle_} : ",spt.y - @wls[2].position.bottom.y, spt.y - @wls[1].position.bottom.y
-        if (spt.y - @wls[2].position.bottom.y) < 70 then @wls[2].finalize() # finalise wly after a jump
+        if (spt.y - @wls[2].position.bottom.y) < 100
+            #@wls[1].finalize()
+            @wls[2].finalize() # finalise wly after a jump
 
 
     #.----------.----------
