@@ -120,18 +120,8 @@
     };
 
     One_waterlily.prototype.finalize = function(dx) {
-
-      /*if not @has_appeared
-          @has_appeared = true
-      
-          @hat.alpha = 1
-          @scale @prm.scale *.25
-          for c in @cldr  then c.alpha = 1
-          #@appear.start()
-           *
-       */
       var sc;
-      sc = this.prm.scale * (2 - dx / 50);
+      sc = this.prm.scale * (1.3333 - dx / 75);
       return this.scale(sc);
     };
 
@@ -275,7 +265,7 @@
         this.make_lily();
       }
       dx = spt.y - this.wls[2].position.bottom.y;
-      if (((50 < dx && dx < 100)) && spt.body.velocity.y < 0) {
+      if (((25 < dx && dx < 100)) && spt.body.velocity.y < 0) {
         this.wls[2].alpha(1);
         return this.wls[2].finalize(dx);
       }

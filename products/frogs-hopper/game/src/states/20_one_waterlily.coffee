@@ -96,20 +96,11 @@ class Phacker.Game.One_waterlily
     # finalise wly after a jump
     #.----------.----------
     finalize : (dx) ->
-        ###if not @has_appeared
-            @has_appeared = true
 
-            @hat.alpha = 1
-            @scale @prm.scale *.25
-            for c in @cldr  then c.alpha = 1
-            #@appear.start()
-            #
-        ###
         #@hat.alpha = 1
-        sc = @prm.scale * (2 - dx / 50)
+        sc = @prm.scale * (1.3333 - dx /  75)
         @scale sc
         #@hat.y += 50
-
 
     #----------.----------
     # scasle the entire waterlily
