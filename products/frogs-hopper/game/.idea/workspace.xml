@@ -4,11 +4,10 @@
     <list default="true" id="0935c1d8-2c6e-459e-a360-2d544488b447" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/game.js" afterPath="$PROJECT_DIR$/build/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/20_one_waterlily.coffee" afterPath="$PROJECT_DIR$/src/states/20_one_waterlily.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/10_socle.coffee" afterPath="$PROJECT_DIR$/src/states/10_socle.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/30_waterlilies.coffee" afterPath="$PROJECT_DIR$/src/states/30_waterlilies.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/50_sprite.coffee" afterPath="$PROJECT_DIR$/src/states/50_sprite.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/40_mouse.coffee" afterPath="$PROJECT_DIR$/src/states/40_mouse.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/80_effect.coffee" afterPath="$PROJECT_DIR$/src/states/80_effect.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/jeu.coffee" afterPath="$PROJECT_DIR$/src/states/jeu.coffee" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -37,8 +36,8 @@
       <file leaf-file-name="10_socle.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/10_socle.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="780">
-              <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="33" />
+            <state relative-caret-position="900">
+              <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -54,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="30_waterlilies.coffee" pinned="false" current-in-tab="false">
+      <file leaf-file-name="30_waterlilies.coffee" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/states/30_waterlilies.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1360">
-              <caret line="68" column="14" lean-forward="false" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
+            <state relative-caret-position="313">
+              <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -67,8 +66,8 @@
       <file leaf-file-name="40_mouse.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/40_mouse.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="634">
-              <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+            <state relative-caret-position="1400">
+              <caret line="70" column="28" lean-forward="false" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -77,7 +76,7 @@
       <file leaf-file-name="50_sprite.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/50_sprite.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="73">
+            <state relative-caret-position="1453">
               <caret line="73" column="24" lean-forward="true" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
               <folding />
             </state>
@@ -87,18 +86,18 @@
       <file leaf-file-name="60_camera.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/60_camera.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="434">
+            <state relative-caret-position="500">
               <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="80_effect.coffee" pinned="false" current-in-tab="true">
+      <file leaf-file-name="80_effect.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/80_effect.coffee">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="380">
-              <caret line="22" column="52" lean-forward="false" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
+              <caret line="22" column="51" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
               <folding />
             </state>
           </provider>
@@ -166,14 +165,14 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/src/states/gggggggggggggg.coffee" />
-        <option value="$PROJECT_DIR$/src/states/10_socle.coffee" />
-        <option value="$PROJECT_DIR$/src/states/40_mouse.coffee" />
         <option value="$PROJECT_DIR$/src/states/60_camera.coffee" />
-        <option value="$PROJECT_DIR$/src/states/30_waterlilies.coffee" />
         <option value="$PROJECT_DIR$/src/states/50_sprite.coffee" />
         <option value="$PROJECT_DIR$/src/states/20_one_waterlily.coffee" />
         <option value="$PROJECT_DIR$/src/states/jeu.coffee" />
         <option value="$PROJECT_DIR$/src/states/80_effect.coffee" />
+        <option value="$PROJECT_DIR$/src/states/10_socle.coffee" />
+        <option value="$PROJECT_DIR$/src/states/40_mouse.coffee" />
+        <option value="$PROJECT_DIR$/src/states/30_waterlilies.coffee" />
       </list>
     </option>
   </component>
@@ -449,7 +448,7 @@
       <workItem from="1489475722781" duration="19788000" />
       <workItem from="1489496041684" duration="634000" />
       <workItem from="1489564944859" duration="20610000" />
-      <workItem from="1489648538023" duration="12999000" />
+      <workItem from="1489648538023" duration="13481000" />
     </task>
     <task id="LOCAL-00001" summary="loose over w[1]&#10;setror in one waterly">
       <created>1489651240614</created>
@@ -458,11 +457,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489651240614</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="appear">
+      <created>1489662568521</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1489662568521</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="279183000" />
+    <option name="totallyTimeSpent" value="279665000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -527,7 +533,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="loose over w[1]&#10;setror in one waterly" />
-    <option name="LAST_COMMIT_MESSAGE" value="loose over w[1]&#10;setror in one waterly" />
+    <MESSAGE value="appear" />
+    <option name="LAST_COMMIT_MESSAGE" value="appear" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -847,42 +854,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/gggggggggggggg.coffee" />
-    <entry file="file://$PROJECT_DIR$/src/states/10_socle.coffee">
+    <entry file="file://$PROJECT_DIR$/src/states/80_effect.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="780">
-          <caret line="39" column="19" lean-forward="false" selection-start-line="39" selection-start-column="19" selection-end-line="39" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/60_camera.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/30_waterlilies.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1360">
-          <caret line="68" column="14" lean-forward="false" selection-start-line="68" selection-start-column="14" selection-end-line="68" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/50_sprite.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="73">
-          <caret line="73" column="24" lean-forward="true" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/40_mouse.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="634">
-          <caret line="51" column="0" lean-forward="false" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+        <state relative-caret-position="380">
+          <caret line="22" column="51" lean-forward="false" selection-start-line="22" selection-start-column="51" selection-end-line="22" selection-end-column="51" />
           <folding />
         </state>
       </provider>
@@ -895,6 +870,30 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/40_mouse.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1400">
+          <caret line="70" column="28" lean-forward="false" selection-start-line="70" selection-start-column="28" selection-end-line="70" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/50_sprite.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1453">
+          <caret line="73" column="24" lean-forward="true" selection-start-line="73" selection-start-column="24" selection-end-line="73" selection-end-column="24" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/60_camera.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="500">
+          <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -903,10 +902,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/80_effect.coffee">
+    <entry file="file://$PROJECT_DIR$/src/states/10_socle.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="22" column="52" lean-forward="false" selection-start-line="22" selection-start-column="52" selection-end-line="22" selection-end-column="52" />
+        <state relative-caret-position="900">
+          <caret line="45" column="0" lean-forward="false" selection-start-line="45" selection-start-column="0" selection-end-line="45" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/30_waterlilies.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="313">
+          <caret line="72" column="0" lean-forward="true" selection-start-line="72" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
           <folding />
         </state>
       </provider>

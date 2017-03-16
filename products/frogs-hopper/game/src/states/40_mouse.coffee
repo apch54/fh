@@ -68,6 +68,5 @@ class Phacker.Game.My_mouse
 
 
     # bind mouse with sprite
-    bind: (waterliliesO) ->
-        @wls = waterliliesO.wls
+    bind: (waterliliesO) ->   @wls = waterliliesO.wls
 

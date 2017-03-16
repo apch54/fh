@@ -64,9 +64,9 @@ class Phacker.Game.Waterlilies
            @wls.splice 0, 1
            @make_lily()
 
-        #console.log "- #{@_fle_} : ",spt.y - @wls[2].position.bottom.y, spt.y - @wls[1].position.bottom.y
+        # make lily 1 apprear
         dx = spt.y - @wls[2].position.bottom.y
-        if  50 < dx < 100
+        if  (50 < dx < 100) and spt.body.velocity.y < 0
             @wls[2].alpha 1
             @wls[2].finalize dx # finalise wly after a jump
 
