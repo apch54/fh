@@ -59,15 +59,16 @@ class Phacker.Game.Waterlilies
     add_destroy: (spt)->
         #if @wls[2]? then console.log "- #{@_fle_} : ",@wls[0].position.top.y - @wls[0].hat.height - @wls[2].position.bottom.y, @spt.y
         w = @wls[0]
-        if w.position.top.y - spt.y > 80 # 80 is pxl number  :  is waterlilie  80 pxl beneath sprite? 
+        if w.position.top.y - spt.y > 80 # 80 is pxl number  :  is waterlilie  80 pxl beneath sprite?
            w.destroy()
            @wls.splice 0, 1
            @make_lily()
 
         #console.log "- #{@_fle_} : ",spt.y - @wls[2].position.bottom.y, spt.y - @wls[1].position.bottom.y
-        if (spt.y - @wls[2].position.bottom.y) < 100
-            #@wls[1].finalize()
-            @wls[2].finalize() # finalise wly after a jump
+        dx = spt.y - @wls[2].position.bottom.y
+        if  50 < dx < 100
+            @wls[2].alpha 1
+            @wls[2].finalize dx # finalise wly after a jump
 
 
     #.----------.----------

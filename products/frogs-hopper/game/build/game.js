@@ -112,14 +112,12 @@
           y: 0
         }
       };
-      this.prm.position = this.position;
-      this.prm.has_appeared = false;
+      this.has_appeared = false;
       this.wl = this.gm.add.physicsGroup();
       this.wl.enableBody = true;
       this.cldr = [];
       this.hat = '';
       this.make_waterlily(this.prm.h, this.prm.x, this.prm.y, this.prm.scale);
-      this.make_tween_appear();
       this.make_tween_climb();
     }
 
@@ -165,24 +163,72 @@
 
     One_waterlily.prototype.make_tween_climb = function() {
       this.twn_climb = this.gm.add.tween(this.hat);
-      return this.twn_climb.to({
-        y: this.position.top.y
-      }, 500, Phaser.Easing.Linear.None);
+      this.twn_climb.to({
+        y: "+15"
+      }, 150, Phaser.Easing.Linear.None);
+      return this.twn_climb.onComplete.addOnce(function() {
+        var e;
+        e = this.gm.add.tween(this.hat);
+        e.to({
+          y: "-15"
+        }, 150, Phaser.Easing.Linear.None);
+        return e.start();
+      }, this);
     };
 
-    One_waterlily.prototype.finalize = function() {
-      var c, i, len, ref;
-      if (!this.prm.has_appeared) {
-        this.prm.has_appeared = true;
-        this.hat.alpha = 1;
-        ref = this.cldr;
-        for (i = 0, len = ref.length; i < len; i++) {
-          c = ref[i];
-          c.alpha = 1;
-        }
-        this.appear.start();
-        return this.hat.y += 50;
+    One_waterlily.prototype.finalize = function(dx) {
+
+      /*if not @has_appeared
+          @has_appeared = true
+      
+          @hat.alpha = 1
+          @scale @prm.scale *.25
+          for c in @cldr  then c.alpha = 1
+          #@appear.start()
+           *
+       */
+      var sc;
+      sc = this.prm.scale * (2 - dx / 50);
+      return this.scale(sc);
+    };
+
+    One_waterlily.prototype.scale = function(scl) {
+      var i, n, ref, stem, y;
+      for (n = i = 0, ref = this.cldr.length - 1; 0 <= ref ? i <= ref : i >= ref; n = 0 <= ref ? ++i : --i) {
+        stem = this.cldr[n];
+        y = this.prm.y - n * this.glob.cylinder.h * scl;
+        stem.y = y;
+        stem.scale.setTo(scl, scl);
       }
+      y -= this.glob.cylinder.h * scl;
+      this.hat.y = y;
+      this.hat.scale.setTo(scl, scl);
+      return this.position.top.y = y;
+    };
+
+    One_waterlily.prototype.alpha = function(a) {
+      var i, n, ref;
+      for (n = i = 0, ref = this.cldr.length - 1; 0 <= ref ? i <= ref : i >= ref; n = 0 <= ref ? ++i : --i) {
+        this.cldr[n].alpha = a;
+      }
+      return this.hat.alpha = a;
+    };
+
+    One_waterlily.prototype.moveTo = function(x, y) {
+      var i, n, ref, stem, yy;
+      for (n = i = 0, ref = this.cldr.length - 1; 0 <= ref ? i <= ref : i >= ref; n = 0 <= ref ? ++i : --i) {
+        stem = this.cldr[n];
+        yy = y - n * this.cylinder.h * this.prm.scale;
+        stem.y = yy;
+        stem.x = x;
+        this.bottom.x = x;
+        this.bottom.y = y;
+      }
+      yy -= this.cylinder.h * this.prm.scale;
+      this.hat.x = x;
+      this.hat.y = yy;
+      this.top.x = x;
+      return this.top.y = yy - this.hat.body.height * this.prm.scale;
     };
 
     One_waterlily.prototype.destroy = function() {
@@ -278,15 +324,17 @@
     };
 
     Waterlilies.prototype.add_destroy = function(spt) {
-      var w;
+      var dx, w;
       w = this.wls[0];
       if (w.position.top.y - spt.y > 80) {
         w.destroy();
         this.wls.splice(0, 1);
         this.make_lily();
       }
-      if ((spt.y - this.wls[2].position.bottom.y) < 100) {
-        return this.wls[2].finalize();
+      dx = spt.y - this.wls[2].position.bottom.y;
+      if ((50 < dx && dx < 100)) {
+        this.wls[2].alpha(1);
+        return this.wls[2].finalize(dx);
       }
     };
 
@@ -432,6 +480,7 @@
       if (!this.glob.spt.has_collided) {
         spt.bringToTop();
         spt.body.velocity.x = 0;
+        this.waterliliesO.wls[1].scale(this.waterliliesO.wls[1].prm.scale);
         this.glob.spt.has_collided = true;
         this.glob.spt.jumping = false;
         this.spt.animations.play('dwn');
@@ -572,7 +621,7 @@
       this.eff.anchor.setTo(0.5, 0.5);
       this.eff.animations.add('explode', [2, 1, 0, 1], 8, true);
       this.eff.x = spriteO.spt.x;
-      this.eff.y = spriteO.spt.y;
+      this.eff.y = spriteO.spt.y - spriteO.spt.height;
       return this.eff.animations.play('explode');
     };
 
@@ -621,6 +670,7 @@
       console.log("Reset the player");
       this.spriteO = new Phacker.Game.Sprite(this.game, this.waterliliesO);
       this.spt = this.spriteO.spt;
+      this.wls[1].scale(this.wls[1].prm.scale);
       return this.effectO.stop();
     };
 

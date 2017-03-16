@@ -81,6 +81,7 @@ class Phacker.Game.Sprite
         if not @glob.spt.has_collided
             spt.bringToTop()
             spt.body.velocity.x = 0 # stop here the sprite
+            @waterliliesO.wls[1].scale(@waterliliesO.wls[1].prm.scale)
             @glob.spt.has_collided = true
             @glob.spt.jumping = false
             @spt.animations.play 'dwn'

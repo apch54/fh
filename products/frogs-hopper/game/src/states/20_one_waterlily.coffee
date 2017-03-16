@@ -20,8 +20,8 @@ class Phacker.Game.One_waterlily
         @glob.ellipse      =  { w: 160, h: 80 }  # ellipse
 
         @position = {top:{x:0, y:0}, bottom:{x:0,y:0}}
-        @prm.position = @position
-        @prm.has_appeared = false
+        #@prm.position = @position
+        @has_appeared = false
 
         @wl = @gm.add.physicsGroup() # waterlily
 
@@ -30,7 +30,7 @@ class Phacker.Game.One_waterlily
         @hat = ''
 
         @make_waterlily( @prm.h, @prm.x, @prm.y, @prm.scale ) # stem hight, x0
-        @make_tween_appear() # automatic on ce on creation
+        #@make_tween_appear() # automatic on ce on creation
         @make_tween_climb()  # must be started
 
 
@@ -82,22 +82,77 @@ class Phacker.Game.One_waterlily
     make_tween_climb:  -> #smooth climb  for hat after jump
         @twn_climb = @gm.add.tween @hat
         @twn_climb.to(
-            { y: @position.top.y }
-            500, Phaser.Easing.Linear.None
+            { y: "+15" }
+            150, Phaser.Easing.Linear.None
+        )
+        @twn_climb.onComplete.addOnce(
+          ->
+              e = @gm.add.tween(@hat);
+              e.to({ y: "-15" }, 150, Phaser.Easing.Linear.None)
+              e.start()
+          this
         )
     #.----------.----------
     # finalise wly after a jump
     #.----------.----------
-    finalize : () ->
-        if not @prm.has_appeared
-            @prm.has_appeared = true
+    finalize : (dx) ->
+        ###if not @has_appeared
+            @has_appeared = true
 
             @hat.alpha = 1
+            @scale @prm.scale *.25
             for c in @cldr  then c.alpha = 1
-            @appear.start()
-            @hat.y += 50
+            #@appear.start()
+            #
+        ###
+        #@hat.alpha = 1
+        sc = @prm.scale * (2 - dx / 50)
+        @scale sc
+        #@hat.y += 50
 
-    #.----------.----------
+
+    #----------.----------
+    # scasle the entire waterlily
+    #----------.----------
+    scale: (scl) ->
+        for n  in [0..@cldr.length - 1]
+            stem = @cldr[n]
+
+            y = @prm.y - n * @glob.cylinder.h * scl
+            stem.y = y
+            stem.scale.setTo scl, scl
+
+        y -=  @glob.cylinder.h * scl
+        @hat.y = y
+        @hat.scale.setTo scl, scl
+
+        @position.top.y = y
+        #@prm.scale = scl
+
+    #----------.----------
+    # alpha the entire waterlily
+    #----------.----------
+    alpha: (a) ->
+        for n  in [0..@cldr.length - 1] then  @cldr[n].alpha = a
+        @hat.alpha = a
+
+    #----------.----------
+    # move the waterlily
+    #----------.----------
+    moveTo: (x, y) ->
+        for n  in [0..@cldr.length - 1]
+            stem = @cldr[n]
+
+            yy = y - n * @cylinder.h * @prm.scale
+            stem.y = yy;        stem.x = x
+            @bottom.x = x;      @bottom.y = y
+
+        yy -=  @cylinder.h * @prm.scale
+        @hat.x = x;         @hat.y = yy
+        @top.x = x;         @top.y = yy -  @hat.body.height * @prm.scale # ok
+
+
+#.----------.----------
     # destroy yhe whole waterlily
     #.----------.----------
     destroy : () ->

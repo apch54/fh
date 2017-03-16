@@ -20,7 +20,7 @@ class Phacker.Game.Effects
         @eff.anchor.setTo(0.5, 0.5) # anchor in the middle of bottom
         @eff.animations.add  'explode', [2, 1, 0, 1], 8, true
         @eff.x = spriteO.spt.x   #set effect location
-        @eff.y = spriteO.spt.y
+        @eff.y = spriteO.spt.y - spriteO.spt.height 
         @eff.animations.play 'explode'
 
     stop: -> @eff.destroy()
