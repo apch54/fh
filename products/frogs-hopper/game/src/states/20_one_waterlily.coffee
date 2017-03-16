@@ -35,7 +35,7 @@ class Phacker.Game.One_waterlily
 
 
     #.----------.----------
-    #make the cwaterlily
+    #make the waterlily
     #.----------.----------
 
     make_waterlily:(h, x0, y0, scale)-> # number of stem, x location & scale
@@ -97,6 +97,12 @@ class Phacker.Game.One_waterlily
             @appear.start()
             @hat.y += 50
 
+    #.----------.----------
+    # destroy yhe whole waterlily
+    #.----------.----------
+    destroy : () ->
+        @wl.destroy()
+        for c in @cldr then c.destroy()
 
 
 

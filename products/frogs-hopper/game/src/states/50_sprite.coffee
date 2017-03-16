@@ -24,6 +24,7 @@ class Phacker.Game.Sprite
 
         # spite parameters
         @glob.spt =
+            reseting: true
             has_collided: true
             jumping: false
             tooLow: false
@@ -104,6 +105,7 @@ class Phacker.Game.Sprite
             @spt.animations.play 'jmp'
             @glob.spt.jumping = true # no jump in jump
             @glob.spt.has_collided = false
+            @glob.spt.reseting = false
             @spt.y -= 20
             @spt.body.velocity.y = -@mouse.dt * @glob.jmp.vy #-@mouseO.mouse.dt * @vy
             #console.log "- #{@_fle_} : ",@waterliliesO.wls[1].prm.way
@@ -127,8 +129,10 @@ class Phacker.Game.Sprite
     # if sprite too low then loose
     #.----------.----------
     check_height: (spt) ->
+        #console.log "- #{@_fle_} : ", spt.body.velocity.y
         if  @glob.spt.tooLow then return 'too low yet'
-        if spt.y > @glob.spt.max_height
+        if (spt.y > @wls[0].hat.y + 5)  and (spt.body.velocity.y > 5) and not @glob.spt.reseting #@glob.spt.max_height
+            #console.log "- #{@_fle_} : ",spt.y , @wls[1].hat.y , spt.body.velocity.y
             @glob.spt.tooLow = true
             return 'loose'
         else return 'ok'
@@ -140,7 +144,7 @@ class Phacker.Game.Sprite
         if  @wls[1].prm.way is 'left' then     @spt.scale.setTo   .8,  .8;    @spt.angle =  @glob.spt.angle
         else                                   @spt.scale.setTo   -.8, .8;    @spt.angle = -@glob.spt.angle
 
-    turnJ: () -> # when jumping
+    turnJ: () -> # turn when jumping
         if  @spt.angle > 0 then     @spt.angle =  -@glob.spt.angle
         else                        @spt.angle =   @glob.spt.angle
 

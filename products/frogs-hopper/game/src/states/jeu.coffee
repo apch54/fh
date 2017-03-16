@@ -25,7 +25,7 @@ class @YourGame extends Phacker.GameState
 
         mess2 = @spriteO.check_height(@spt)
         if mess2 is 'loose'
-            console.log "- #{@_fle_} : ",mess2
+            #console.log "- #{@_fle_} : ",mess2
             @spt.destroy()
             @effectO.play @spriteO
             @lostLife()

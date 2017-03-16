@@ -59,8 +59,8 @@ class Phacker.Game.Waterlilies
     add_destroy: (spt)->
         #if @wls[2]? then console.log "- #{@_fle_} : ",@wls[0].position.top.y - @wls[0].hat.height - @wls[2].position.bottom.y, @spt.y
         w = @wls[0]
-        if w.position.top.y - spt.y > 80 # 80 is pxl number  :  is waterlilie  80 pxl beneath sprite?
-           w.wl.destroy()
+        if w.position.top.y - spt.y > 80 # 80 is pxl number  :  is waterlilie  80 pxl beneath sprite? 
+           w.destroy()
            @wls.splice 0, 1
            @make_lily()
 

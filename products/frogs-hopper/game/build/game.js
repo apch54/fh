@@ -185,6 +185,18 @@
       }
     };
 
+    One_waterlily.prototype.destroy = function() {
+      var c, i, len, ref, results;
+      this.wl.destroy();
+      ref = this.cldr;
+      results = [];
+      for (i = 0, len = ref.length; i < len; i++) {
+        c = ref[i];
+        results.push(c.destroy());
+      }
+      return results;
+    };
+
     return One_waterlily;
 
   })();
@@ -269,7 +281,7 @@
       var w;
       w = this.wls[0];
       if (w.position.top.y - spt.y > 80) {
-        w.wl.destroy();
+        w.destroy();
         this.wls.splice(0, 1);
         this.make_lily();
       }
@@ -369,6 +381,7 @@
       this.wls = this.waterliliesO.wls;
       this.glob = this.gm.ge.parameters;
       this.glob.spt = {
+        reseting: true,
         has_collided: true,
         jumping: false,
         tooLow: false,
@@ -445,6 +458,7 @@
         this.spt.animations.play('jmp');
         this.glob.spt.jumping = true;
         this.glob.spt.has_collided = false;
+        this.glob.spt.reseting = false;
         this.spt.y -= 20;
         this.spt.body.velocity.y = -this.mouse.dt * this.glob.jmp.vy;
         this.spt.body.velocity.x = this.waterliliesO.wls[1].prm.way === 'left' ? -this.mouse.dt * this.glob.jmp.vx : this.mouse.dt * this.glob.jmp.vx;
@@ -464,7 +478,7 @@
       if (this.glob.spt.tooLow) {
         return 'too low yet';
       }
-      if (spt.y > this.glob.spt.max_height) {
+      if ((spt.y > this.wls[0].hat.y + 5) && (spt.body.velocity.y > 5) && !this.glob.spt.reseting) {
         this.glob.spt.tooLow = true;
         return 'loose';
       } else {
@@ -596,7 +610,6 @@
       this.camO.move(this.spt);
       mess2 = this.spriteO.check_height(this.spt);
       if (mess2 === 'loose') {
-        console.log("- " + this._fle_ + " : ", mess2);
         this.spt.destroy();
         this.effectO.play(this.spriteO);
         this.lostLife();
