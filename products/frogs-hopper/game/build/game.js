@@ -338,7 +338,9 @@
           dy = 50;
         }
         wly.hat.y = wly.position.top.y + dy;
-        return wly.flw.flw.y = wly.position.top.y + dy - 20;
+        if (wly.flw != null) {
+          return wly.flw.flw.y = wly.position.top.y + dy - 20;
+        }
       }
     };
 
@@ -429,7 +431,9 @@
         spt.body.velocity.x = 0;
         this.waterliliesO.wls[1].scale(this.waterliliesO.wls[1].prm.scale);
         this.waterliliesO.wls[1].make_flower();
-        this.waterliliesO.wls[0].flw.twn_escape.start();
+        if (this.waterliliesO.wls[0].flw != null) {
+          this.waterliliesO.wls[0].flw.twn_escape.start();
+        }
         this.glob.spt.has_collided = true;
         this.glob.spt.jumping = false;
         this.spt.animations.play('dwn');
@@ -573,22 +577,35 @@
     }
 
     Flower.prototype.make_flower = function() {
-      this.flw = this.gm.add.sprite(this.prm.x0, this.prm.y0 - 10, 'bonus');
+      var xx, yy;
+      yy = this.prm.y0 - this.gm.rnd.integerInRange(10, 25);
+      xx = this.gm.rnd.integerInRange(20, 50);
+      xx = this.prm.way === 'left' ? this.prm.x0 - xx : this.prm.x0 + xx;
+      this.flw = this.gm.add.sprite(xx, yy, 'bonus');
       this.flw.anchor.setTo(0.5, 1);
       return this.gm.physics.enable(this.flw, Phaser.Physics.ARCADE);
     };
 
     Flower.prototype.make_twn_escape = function() {
+      var x1, x2, y1, y2;
+      x1 = this.gm.rnd.integerInRange(40, 80);
+      x1 = this.prm.way === 'left' ? this.flw.x - x1 : this.flw.x + x1;
+      y1 = this.flw.y + 10;
+      x2 = this.gm.rnd.integerInRange(40, 80);
+      x2 = this.prm.way === 'left' ? x1 - x2 : x1 + x2;
+      y2 = this.flw.y + 150;
       this.twn_escape = this.gm.add.tween(this.flw);
       this.twn_escape.to({
-        x: "-20"
-      }, 150, Phaser.Easing.Linear.None);
+        x: x1,
+        y: this.flw.y - 10
+      }, 200, Phaser.Easing.Bounce.In);
       return this.twn_escape.onComplete.addOnce(function() {
         var e;
         e = this.gm.add.tween(this.flw);
         e.to({
-          y: "+150"
-        }, 200, Phaser.Easing.Cubic.In);
+          x: x2,
+          y: y2
+        }, 300, Phaser.Easing.Cubic.In);
         return e.start();
       }, this);
     };

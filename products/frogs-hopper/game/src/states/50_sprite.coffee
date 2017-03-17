@@ -85,7 +85,7 @@ class Phacker.Game.Sprite
 
             @waterliliesO.wls[1].scale( @waterliliesO.wls[1].prm.scale )
             @waterliliesO.wls[1].make_flower()
-            @waterliliesO.wls[0].flw.twn_escape.start()
+            if @waterliliesO.wls[0].flw? then @waterliliesO.wls[0].flw.twn_escape.start()
 
             @glob.spt.has_collided = true
             @glob.spt.jumping = false

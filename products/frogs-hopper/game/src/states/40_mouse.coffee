@@ -49,7 +49,7 @@ class Phacker.Game.My_mouse
             dy = Math.floor(dt / @glob.mouse.maxTime * 50)
             if dy >= 50 then dy= 50
             wly.hat.y = wly.position.top.y + dy
-            wly.flw.flw.y = wly.position.top.y + dy - 20
+            if wly.flw? then wly.flw.flw.y = wly.position.top.y + dy - 20
 
 
 

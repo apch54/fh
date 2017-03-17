@@ -15,31 +15,40 @@ class Phacker.Game.Flower
   #.----------.----------
   # draw the bird
   #.----------.----------
-
   make_flower: ->
 
-      @flw = @gm.add.sprite @prm.x0 , @prm.y0 - 10, 'bonus'  #2 9x 29
+      yy =  @prm.y0 - @gm.rnd.integerInRange 10, 25 # choose animation
+      xx = @gm.rnd.integerInRange 20, 50 # choose animation
+      xx = if @prm.way is 'left' then @prm.x0 - xx else  @prm.x0 + xx
+
+      @flw = @gm.add.sprite xx ,yy, 'bonus'  #2 9x 29
       @flw.anchor.setTo(0.5, 1) # anchor in the middle of bottomn
       @gm.physics.enable( @flw, Phaser.Physics.ARCADE)
       #@flw.body.gravity.y = 500
 
 
   #.----------.----------
-  # make tween  : escape when sprite collide leaf of lly
+  # make tween  : escape when sprite collide leaf of lily leafe
   #.----------.----------
-
   make_twn_escape:  -> #smooth escape
+
+    x1 = @gm.rnd.integerInRange 40, 80
+    x1 = if @prm.way is 'left'  then @flw.x - x1 else @flw.x + x1
+    y1 = @flw.y + 10
+    x2 = @gm.rnd.integerInRange 40, 80
+    x2 = if @prm.way is 'left'  then  x1 - x2 else x1 + x2
+    y2 = @flw.y + 150
+
     @twn_escape = @gm.add.tween @flw
     @twn_escape.to(
-      { x: "-20" }
-      150, Phaser.Easing.Linear.None
+      { x: x1, y:@flw.y - 10 }
+      200, Phaser.Easing.Bounce.In
     )
     @twn_escape.onComplete.addOnce(
       ->
         e = @gm.add.tween(@flw);
-        e.to { y: "+150" }, 200, Phaser.Easing.Cubic.In
+        e.to { x: x2, y: y2 }, 300, Phaser.Easing.Cubic.In
         e.start()
       this
     )
 
- 
