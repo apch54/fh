@@ -84,7 +84,7 @@ class Phacker.Game.Sprite
             spt.body.velocity.x = 0 # stop here the sprite
 
             @waterliliesO.wls[1].scale( @waterliliesO.wls[1].prm.scale )
-            @waterliliesO.wls[1].make_flower()
+            @waterliliesO.wls[1].make_flower() if not @waterliliesO.wls[1].flw?
             if @waterliliesO.wls[0].flw? then @waterliliesO.wls[0].flw.twn_escape.start()
 
             @glob.spt.has_collided = true
@@ -93,7 +93,10 @@ class Phacker.Game.Sprite
             @glob.spt.max_height = spt.y + 10 # if sprite goes under max_height then it loose
 
             if  wly.key is "ellipse"
-                if  -4 < (wly.y - spt.y - wly.body.height) < 4 then @glob.spt.message = "win"
+                #console.log "- #{@_fle_} : ",wly.flower_visible
+                if  -4 < (wly.y - spt.y - wly.body.height) < 4
+                    if wly.flower_visible  then @glob.spt.message = "bonus"
+                    else    @glob.spt.message ="win"
                 else @glob.spt.message = "loose ellipse"
             else @glob.spt.message = "loose cylinder"
 
@@ -116,8 +119,6 @@ class Phacker.Game.Sprite
             @spt.body.velocity.y = -@mouse.dt * @glob.jmp.vy #-@mouseO.mouse.dt * @vy
             #console.log "- #{@_fle_} : ",@waterliliesO.wls[1].prm.way
             @spt.body.velocity.x =  if @waterliliesO.wls[1].prm.way is 'left' then -@mouse.dt * @glob.jmp.vx  else @mouse.dt * @glob.jmp.vx#gameOptions.pMaxDx * .75  # @mouseO.mouse.dt * @vy
-            #@waterliliesO.make_lily()
-            #@turn()
 
         @mouse.dt = 0
 

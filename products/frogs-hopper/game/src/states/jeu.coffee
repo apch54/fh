@@ -15,8 +15,9 @@ class @YourGame extends Phacker.GameState
         super() #Required
         @_fle_ = 'Jeu, update'
 
-        mess1 = @spriteO.collide @wls
+        mess1 = @spriteO.collide @wls # test message from game
         if mess1 is 'win' then @win()
+        else if mess1 is "bonus" then @winBonus()
 
         #console.log "- #{@_fle_} : ",mess
         @spriteO.jump()
@@ -33,8 +34,10 @@ class @YourGame extends Phacker.GameState
         @waterliliesO.add_destroy @spt
 
     resetPlayer: ->
-        console.log "Reset the player"
+        #console.log "Reset the player"
         @wls[0].scale  @wls[0].prm.scale
+        @wls[0].flw.flw.alpha = 0 if @wls[0].flw?
+
         @spriteO = new Phacker.Game.Sprite @game, @waterliliesO
         @spt = @spriteO.spt
         @wls[1].scale  @wls[1].prm.scale

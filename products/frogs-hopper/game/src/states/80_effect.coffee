@@ -9,7 +9,7 @@ class Phacker.Game.Effects
 
     #.----------.----------
     # play animation & stop
-    # create effect on live for effect must be over columns
+    # create effect on live for effect must be over lilies
     #.----------.----------
 
     play:(spriteO) ->#

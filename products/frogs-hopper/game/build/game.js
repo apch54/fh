@@ -88,6 +88,7 @@
       this.hat.anchor.setTo(.5, 1);
       this.hat.body.immovable = true;
       this.hat.alpha = this.prm.init < 2 ? 1 : .1;
+      this.hat.flower_visible = false;
       this.hat.prms = this.prms;
       this.position.top = {
         x: this.hat.x,
@@ -97,11 +98,19 @@
     };
 
     One_waterlily.prototype.make_flower = function() {
-      return this.flw = new Phacker.Game.Flower(this.gm, {
+      var vsi;
+      if (this.gm.rnd.integerInRange(0, 3) === 0) {
+        vsi = true;
+      } else {
+        vsi = false;
+      }
+      this.flw = new Phacker.Game.Flower(this.gm, {
         x0: this.position.top.x,
         y0: this.position.top.y,
-        way: this.prm.way
+        way: this.prm.way,
+        visible: vsi
       });
+      return this.hat.flower_visible = vsi;
     };
 
     One_waterlily.prototype.make_tween_appear = function() {
@@ -430,7 +439,9 @@
         spt.bringToTop();
         spt.body.velocity.x = 0;
         this.waterliliesO.wls[1].scale(this.waterliliesO.wls[1].prm.scale);
-        this.waterliliesO.wls[1].make_flower();
+        if (this.waterliliesO.wls[1].flw == null) {
+          this.waterliliesO.wls[1].make_flower();
+        }
         if (this.waterliliesO.wls[0].flw != null) {
           this.waterliliesO.wls[0].flw.twn_escape.start();
         }
@@ -440,7 +451,11 @@
         this.glob.spt.max_height = spt.y + 10;
         if (wly.key === "ellipse") {
           if ((-4 < (ref = wly.y - spt.y - wly.body.height) && ref < 4)) {
-            return this.glob.spt.message = "win";
+            if (wly.flower_visible) {
+              return this.glob.spt.message = "bonus";
+            } else {
+              return this.glob.spt.message = "win";
+            }
           } else {
             return this.glob.spt.message = "loose ellipse";
           }
@@ -583,7 +598,10 @@
       xx = this.prm.way === 'left' ? this.prm.x0 - xx : this.prm.x0 + xx;
       this.flw = this.gm.add.sprite(xx, yy, 'bonus');
       this.flw.anchor.setTo(0.5, 1);
-      return this.gm.physics.enable(this.flw, Phaser.Physics.ARCADE);
+      this.gm.physics.enable(this.flw, Phaser.Physics.ARCADE);
+      if (!this.prm.visible) {
+        return this.flw.alpha = 0;
+      }
     };
 
     Flower.prototype.make_twn_escape = function() {
@@ -663,6 +681,8 @@
       mess1 = this.spriteO.collide(this.wls);
       if (mess1 === 'win') {
         this.win();
+      } else if (mess1 === "bonus") {
+        this.winBonus();
       }
       this.spriteO.jump();
       this.mouseO.when_down();
@@ -677,8 +697,10 @@
     };
 
     YourGame.prototype.resetPlayer = function() {
-      console.log("Reset the player");
       this.wls[0].scale(this.wls[0].prm.scale);
+      if (this.wls[0].flw != null) {
+        this.wls[0].flw.flw.alpha = 0;
+      }
       this.spriteO = new Phacker.Game.Sprite(this.game, this.waterliliesO);
       this.spt = this.spriteO.spt;
       this.wls[1].scale(this.wls[1].prm.scale);

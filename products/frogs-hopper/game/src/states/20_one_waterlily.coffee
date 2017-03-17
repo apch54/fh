@@ -2,16 +2,14 @@
 #             __.--,.,--.__
 #           .(  './   \.'  ).
 #          ;__\   \   /   /__;
-#         (   `',-:"o"o-,'`   )
 #         /'.__/o'o.'o'o.\__.'\
 #         \.-' \o'.o.'o'o/ '-./
-#         (     ;-o.:o.-;     )
 #          ;--'/    |    \'--;
 #           `-.\   /^\   /.-'
 #               `"`---`"`
 class Phacker.Game.One_waterlily
 
-    constructor: (@gm, @prm) -> #prm = {h:, x:, y:, scale:, way}
+    constructor: (@gm, @prm) -> #prm = {h:, x:, y:, scale:, way, init}
         @_fle_          = 'One waterlily'
         @glob = @gm.ge.parameters
 
@@ -66,6 +64,8 @@ class Phacker.Game.One_waterlily
         @hat.anchor.setTo  .5, 1
         @hat.body.immovable = true
         @hat.alpha = if @prm.init < 2 then 1 else .1
+        @hat.flower_visible = false
+
 
         @hat.prms = @prms
         @position.top ={ x: @hat.x, y: @hat.y }
@@ -76,7 +76,11 @@ class Phacker.Game.One_waterlily
     # make a flower
     #----------.----------
     make_flower: () ->
-        @flw = new Phacker.Game.Flower(@gm, {x0:@position.top.x, y0:@position.top.y, way: @prm.way } )
+        if @gm.rnd.integerInRange(0,3) is 0 then vsi = true else vsi = false # 1/3 chance to have a flower
+        @flw = new Phacker.Game.Flower(@gm, {x0:@position.top.x, y0:@position.top.y, way: @prm.way, visible: vsi } )
+
+        @hat.flower_visible = vsi
+
     #.----------.----------
     # make tween  : appear and climb for jump
     #.----------.----------

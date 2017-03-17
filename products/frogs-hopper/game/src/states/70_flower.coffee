@@ -10,6 +10,7 @@ class Phacker.Game.Flower
       @_fle_   = 'Flower'
       @make_flower()
       @make_twn_escape() # that's a tween for escaping bird
+      #console.log "- #{@_fle_} : ",@prm
 
 
   #.----------.----------
@@ -25,6 +26,8 @@ class Phacker.Game.Flower
       @flw.anchor.setTo(0.5, 1) # anchor in the middle of bottomn
       @gm.physics.enable( @flw, Phaser.Physics.ARCADE)
       #@flw.body.gravity.y = 500
+      if not @prm.visible then @flw.alpha = 0
+
 
 
   #.----------.----------
