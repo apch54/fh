@@ -71,6 +71,12 @@ class Phacker.Game.One_waterlily
         @position.top ={ x: @hat.x, y: @hat.y }
         @gm.world.bringToTop(@wl)
 
+
+    #----------.----------
+    # make a flower
+    #----------.----------
+    make_flower: () ->
+        @flw = new Phacker.Game.Flower(@gm, {x0:@position.top.x, y0:@position.top.y , way:@prm.way} )
     #.----------.----------
     # make tween  : appear and climb for jump
     #.----------.----------
@@ -143,12 +149,13 @@ class Phacker.Game.One_waterlily
         @top.x = x;         @top.y = yy -  @hat.body.height * @prm.scale # ok
 
 
-#.----------.----------
+    #.----------.----------
     # destroy yhe whole waterlily
     #.----------.----------
     destroy : () ->
-        @wl.destroy()
-        for c in @cldr then c.destroy()
+        @wl.destroy()  # destroy leaf
+        for c in @cldr then c.destroy() # destry stem
+        @flw.flw.destroy() if flw?
 
 
 

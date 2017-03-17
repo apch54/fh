@@ -96,6 +96,14 @@
       return this.gm.world.bringToTop(this.wl);
     };
 
+    One_waterlily.prototype.make_flower = function() {
+      return this.flw = new Phacker.Game.Flower(this.gm, {
+        x0: this.position.top.x,
+        y0: this.position.top.y,
+        way: this.prm.way
+      });
+    };
+
     One_waterlily.prototype.make_tween_appear = function() {
       var y1;
       y1 = this.hat.y;
@@ -165,15 +173,16 @@
     };
 
     One_waterlily.prototype.destroy = function() {
-      var c, i, len, ref, results;
+      var c, i, len, ref;
       this.wl.destroy();
       ref = this.cldr;
-      results = [];
       for (i = 0, len = ref.length; i < len; i++) {
         c = ref[i];
-        results.push(c.destroy());
+        c.destroy();
       }
-      return results;
+      if (typeof flw !== "undefined" && flw !== null) {
+        return this.flw.flw.destroy();
+      }
     };
 
     return One_waterlily;
@@ -225,6 +234,7 @@
           init: true,
           way: 'left'
         }));
+        this.wls[1].make_flower();
       } else {
         x0 = this.wls[1].position.bottom.x;
         y0 = this.wls[1].position.bottom.y;
@@ -327,7 +337,8 @@
         if (dy >= 50) {
           dy = 50;
         }
-        return wly.hat.y = wly.position.top.y + dy;
+        wly.hat.y = wly.position.top.y + dy;
+        return wly.flw.flw.y = wly.position.top.y + dy - 20;
       }
     };
 
@@ -379,7 +390,7 @@
         g: 700
       };
       this.spt = this.gm.add.sprite(this.wls[0].position.top.x, this.wls[0].position.top.y - 20, 'character_sprite', 6);
-      this.gm.physics.arcade.enable(this.spt);
+      this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.spt.body.gravity.y = this.glob.jmp.g;
       this.spt.body.setSize(70, 30, 1, 47);
       this.spt.scale.setTo(.8, .8);
@@ -397,6 +408,9 @@
       var i, len, wls;
       for (i = 0, len = waterlilies.length; i < len; i++) {
         wls = waterlilies[i];
+        if (wls.flw != null) {
+          this.gm.physics.arcade.collide(wls.flw.flw, wls.hat);
+        }
         if (this.gm.physics.arcade.collide(this.spt, wls.wl, function() {
           return true;
         }, function(spt, wls) {
@@ -414,6 +428,8 @@
         spt.bringToTop();
         spt.body.velocity.x = 0;
         this.waterliliesO.wls[1].scale(this.waterliliesO.wls[1].prm.scale);
+        this.waterliliesO.wls[1].make_flower();
+        this.waterliliesO.wls[0].flw.twn_escape.start();
         this.glob.spt.has_collided = true;
         this.glob.spt.jumping = false;
         this.spt.animations.play('dwn');
@@ -534,6 +550,50 @@
     };
 
     return My_camera;
+
+  })();
+
+}).call(this);
+
+
+/*
+   * ecrit par fc
+   * le  2016
+   * description :
+ */
+
+(function() {
+  Phacker.Game.Flower = (function() {
+    function Flower(gm, prm) {
+      this.gm = gm;
+      this.prm = prm;
+      this._fle_ = 'Flower';
+      this.make_flower();
+      this.make_twn_escape();
+    }
+
+    Flower.prototype.make_flower = function() {
+      this.flw = this.gm.add.sprite(this.prm.x0, this.prm.y0 - 10, 'bonus');
+      this.flw.anchor.setTo(0.5, 1);
+      return this.gm.physics.enable(this.flw, Phaser.Physics.ARCADE);
+    };
+
+    Flower.prototype.make_twn_escape = function() {
+      this.twn_escape = this.gm.add.tween(this.flw);
+      this.twn_escape.to({
+        x: "-20"
+      }, 150, Phaser.Easing.Linear.None);
+      return this.twn_escape.onComplete.addOnce(function() {
+        var e;
+        e = this.gm.add.tween(this.flw);
+        e.to({
+          y: "+150"
+        }, 200, Phaser.Easing.Cubic.In);
+        return e.start();
+      }, this);
+    };
+
+    return Flower;
 
   })();
 

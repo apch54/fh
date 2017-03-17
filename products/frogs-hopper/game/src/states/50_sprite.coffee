@@ -41,8 +41,7 @@ class Phacker.Game.Sprite
             g: 700 # gravity
 
         @spt = @gm.add.sprite @wls[0].position.top.x, @wls[0].position.top.y  - 20, 'character_sprite', 6 #35x60
-        @gm.physics.arcade.enable @spt
-        #@spt.body.bounce.set 0
+        @gm.physics.arcade.enable @spt,Phaser.Physics.ARCADE
         @spt.body.gravity.y = @glob.jmp.g
         @spt.body.setSize(70, 30, 1, 47) # w, h, offset x, offset y
         @spt.scale.setTo .8,.8
@@ -65,6 +64,8 @@ class Phacker.Game.Sprite
     #.----------.----------
     collide: (waterlilies) ->
         for wls in waterlilies
+            #console.log "- #{@_fle_} : ",wls.flw.flw
+            if wls.flw? then @gm.physics.arcade.collide(wls.flw.flw, wls.hat )
             if @gm.physics.arcade.collide(
                 @spt, wls.wl
                 -> return true
@@ -81,7 +82,11 @@ class Phacker.Game.Sprite
         if not @glob.spt.has_collided
             spt.bringToTop()
             spt.body.velocity.x = 0 # stop here the sprite
-            @waterliliesO.wls[1].scale(@waterliliesO.wls[1].prm.scale)
+
+            @waterliliesO.wls[1].scale( @waterliliesO.wls[1].prm.scale )
+            @waterliliesO.wls[1].make_flower()
+            @waterliliesO.wls[0].flw.twn_escape.start()
+
             @glob.spt.has_collided = true
             @glob.spt.jumping = false
             @spt.animations.play 'dwn'
