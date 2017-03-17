@@ -34,10 +34,12 @@ class @YourGame extends Phacker.GameState
 
     resetPlayer: ->
         console.log "Reset the player"
+        @wls[0].scale  @wls[0].prm.scale
         @spriteO = new Phacker.Game.Sprite @game, @waterliliesO
         @spt = @spriteO.spt
         @wls[1].scale  @wls[1].prm.scale
         @effectO.stop() # destroy effect
+
         #@bonus_sound.play()
         #@spriteO.reset()
 

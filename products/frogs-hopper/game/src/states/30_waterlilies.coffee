@@ -25,9 +25,9 @@ class Phacker.Game.Waterlilies
     #.----------.----------
     make_lily : ->
         if @wls.length  is 0 # 1st lily
-            @wls.push new Phacker.Game.One_waterlily(@gm,{h: @glob.wly.h0, x:@glob.bg.middleX, y:@glob.wly.y0, scale:@glob.wly.scale0, init: true, way: 'left'})
+            @wls.push new Phacker.Game.One_waterlily(@gm,{h: @glob.wly.h0, x:@glob.bg.middleX, y:@glob.wly.y0, scale:@glob.wly.scale0, init: 0, way: 'left'})
         else if @wls.length  is 1 # 2nd lily
-            @wls.push new Phacker.Game.One_waterlily(@gm,{h: @glob.wly.h0, x:@glob.bg.middleX - 120 , y:@glob.wly.y0 -  71, scale:@glob.wly.scale0, init: true, way: 'left'})
+            @wls.push new Phacker.Game.One_waterlily(@gm,{h: @glob.wly.h0, x:@glob.bg.middleX - 120 , y:@glob.wly.y0 -  71, scale:@glob.wly.scale0, init: 1, way: 'left'})
             @wls[1].make_flower()
         else
             x0 = @wls[1].position.bottom.x

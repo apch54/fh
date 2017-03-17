@@ -6,7 +6,7 @@
 
 class Phacker.Game.Flower
 
-  constructor: (@gm, @prm) -> #prm ={x,y,way #left or right#}
+  constructor: (@gm, @prm) -> #prm ={x,y,way #left or right#, visible}
       @_fle_   = 'Flower'
       @make_flower()
       @make_twn_escape() # that's a tween for escaping bird
@@ -29,8 +29,9 @@ class Phacker.Game.Flower
 
   #.----------.----------
   # make tween  : escape when sprite collide leaf of lily leafe
+  # 2 step : horizontal then vertical
   #.----------.----------
-  make_twn_escape:  -> #smooth escape
+  make_twn_escape:  -> #smooth lily flower escaping
 
     x1 = @gm.rnd.integerInRange 40, 80
     x1 = if @prm.way is 'left'  then @flw.x - x1 else @flw.x + x1

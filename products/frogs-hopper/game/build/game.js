@@ -69,7 +69,7 @@
       c = this.gm.add.sprite(x0, y0, "cylinder");
       this.cldr.push(c);
       c.anchor.setTo(.5, 1);
-      c.alpha = this.prm.init ? 1 : .1;
+      c.alpha = this.prm.init < 2 ? 1 : .1;
       this.position.bottom = {
         x: x0,
         y: y0
@@ -79,7 +79,7 @@
         c = this.gm.add.sprite(x0, y0, "cylinder");
         this.cldr.push(c);
         c.anchor.setTo(.5, 1);
-        c.alpha = this.prm.init ? 1 : .1;
+        c.alpha = this.prm.init < 2 ? 1 : .1;
       }
       y0 -= this.glob.cylinder.h - 5;
       this.hat = this.wl.create(x0, y0, "ellipse");
@@ -87,7 +87,7 @@
       this.hat.scale.setTo(scale, scale);
       this.hat.anchor.setTo(.5, 1);
       this.hat.body.immovable = true;
-      this.hat.alpha = this.prm.init ? 1 : .1;
+      this.hat.alpha = this.prm.init < 2 ? 1 : .1;
       this.hat.prms = this.prms;
       this.position.top = {
         x: this.hat.x,
@@ -222,7 +222,7 @@
           x: this.glob.bg.middleX,
           y: this.glob.wly.y0,
           scale: this.glob.wly.scale0,
-          init: true,
+          init: 0,
           way: 'left'
         }));
       } else if (this.wls.length === 1) {
@@ -231,7 +231,7 @@
           x: this.glob.bg.middleX - 120,
           y: this.glob.wly.y0 - 71,
           scale: this.glob.wly.scale0,
-          init: true,
+          init: 1,
           way: 'left'
         }));
         this.wls[1].make_flower();
@@ -678,6 +678,7 @@
 
     YourGame.prototype.resetPlayer = function() {
       console.log("Reset the player");
+      this.wls[0].scale(this.wls[0].prm.scale);
       this.spriteO = new Phacker.Game.Sprite(this.game, this.waterliliesO);
       this.spt = this.spriteO.spt;
       this.wls[1].scale(this.wls[1].prm.scale);
