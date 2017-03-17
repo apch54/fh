@@ -7,8 +7,8 @@ class Phacker.Game.Waterlilies
         @glob.wly  =
             x0: if @gm.gameOptions.fullscreen  then @glob.bg.w - 70 else @glob.bg.w - 250 # for a left jump
             y0: @glob.bg.h + 20
-            h0: 3
-            scale0: .65 #scale
+            h0: 2
+            scale0: .7 #scale
             dxmax: 275  # maximum waterlily dx
             dymax: 162
             tan: 162 / 275
@@ -27,12 +27,12 @@ class Phacker.Game.Waterlilies
         if @wls.length  is 0 # 1st lily
             @wls.push new Phacker.Game.One_waterlily(@gm,{h: @glob.wly.h0, x:@glob.bg.middleX, y:@glob.wly.y0, scale:@glob.wly.scale0, init: 0, way: 'left'})
         else if @wls.length  is 1 # 2nd lily
-            @wls.push new Phacker.Game.One_waterlily(@gm,{h: @glob.wly.h0, x:@glob.bg.middleX - 120 , y:@glob.wly.y0 -  71, scale:@glob.wly.scale0, init: 1, way: 'left'})
+            @wls.push new Phacker.Game.One_waterlily(@gm,{h: @glob.wly.h0, x:@glob.bg.middleX - 130 , y:@glob.wly.y0 - 77, scale:@glob.wly.scale0, init: 1, way: 'left'})
             @wls[1].make_flower()
         else
             x0 = @wls[1].position.bottom.x
             y0 = @wls[1].position.bottom.y
-            hxys = @hxy_scale  x0,  y0
+            hxys = @hxy_scale  x0,  y0 # compute h (stems), x, y & scale
             @wls.push new Phacker.Game.One_waterlily(@gm, hxys )
 
         if @spt? then @spt.bringToTop() # sprite at the top layer
@@ -41,18 +41,30 @@ class Phacker.Game.Waterlilies
     # determine height,x,....
     #.----------.----------
     hxy_scale:(x0, y0)->
+
         wway = @left_or_right[@gm.rnd.integerInRange(0,1)]
         #wway = 'right'
 
+        #console.log "- #{@_fle_} : ","score : ",
+        if @gm.ge.score < 50
+            hh = @glob.wly.h0
+            xx = if wway is "left" then x0 - 130 else x0 + 130
+            yy = y0 - 77
+            scl = @glob.wly.scale0
+
+
         # @wls[2] is right over @wls[0] so put it a little far away
-        if @wls[0].prm.way is wway then  dx = @gm.rnd.integerInRange 1, 2
-        else dx = @gm.rnd.integerInRange 2, 2
+        else if @gm.ge.score < 100
+            if @wls[0].prm.way is wway then  dx = @gm.rnd.integerInRange 1, 2
+            else dx = @gm.rnd.integerInRange 2, 2
 
-        dx = (3 + dx)* @glob.wly.dxmax / 8
-        x  = if wway is 'left' then  x0 - dx else  x0 + dx
-        y  = y0 - @glob.wly.tan * dx
+            hh = @glob.wly.h0
+            dx = (3 + dx)* @glob.wly.dxmax / 8
+            xx  = if wway is 'left' then  x0 - dx else  x0 + dx
+            yy  = y0 - @glob.wly.tan * dx
+            scl = @glob.wly.scale0
 
-        return { h:3, x:x, y:y, scale:@glob.wly.scale0, way: wway } # s is scale
+        return { h:hh, x:xx, y:yy, scale: scl, way: wway } # s is scale
 
     #.----------.----------
     # add_destroy lilies

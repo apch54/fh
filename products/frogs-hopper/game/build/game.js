@@ -209,8 +209,8 @@
       this.glob.wly = {
         x0: this.gm.gameOptions.fullscreen ? this.glob.bg.w - 70 : this.glob.bg.w - 250,
         y0: this.glob.bg.h + 20,
-        h0: 3,
-        scale0: .65,
+        h0: 2,
+        scale0: .7,
         dxmax: 275,
         dymax: 162,
         tan: 162 / 275,
@@ -237,8 +237,8 @@
       } else if (this.wls.length === 1) {
         this.wls.push(new Phacker.Game.One_waterlily(this.gm, {
           h: this.glob.wly.h0,
-          x: this.glob.bg.middleX - 120,
-          y: this.glob.wly.y0 - 71,
+          x: this.glob.bg.middleX - 130,
+          y: this.glob.wly.y0 - 77,
           scale: this.glob.wly.scale0,
           init: 1,
           way: 'left'
@@ -256,21 +256,30 @@
     };
 
     Waterlilies.prototype.hxy_scale = function(x0, y0) {
-      var dx, wway, x, y;
+      var dx, hh, scl, wway, xx, yy;
       wway = this.left_or_right[this.gm.rnd.integerInRange(0, 1)];
-      if (this.wls[0].prm.way === wway) {
-        dx = this.gm.rnd.integerInRange(1, 2);
-      } else {
-        dx = this.gm.rnd.integerInRange(2, 2);
+      if (this.gm.ge.score < 50) {
+        hh = this.glob.wly.h0;
+        xx = wway === "left" ? x0 - 130 : x0 + 130;
+        yy = y0 - 77;
+        scl = this.glob.wly.scale0;
+      } else if (this.gm.ge.score < 100) {
+        if (this.wls[0].prm.way === wway) {
+          dx = this.gm.rnd.integerInRange(1, 2);
+        } else {
+          dx = this.gm.rnd.integerInRange(2, 2);
+        }
+        hh = this.glob.wly.h0;
+        dx = (3 + dx) * this.glob.wly.dxmax / 8;
+        xx = wway === 'left' ? x0 - dx : x0 + dx;
+        yy = y0 - this.glob.wly.tan * dx;
+        scl = this.glob.wly.scale0;
       }
-      dx = (3 + dx) * this.glob.wly.dxmax / 8;
-      x = wway === 'left' ? x0 - dx : x0 + dx;
-      y = y0 - this.glob.wly.tan * dx;
       return {
-        h: 3,
-        x: x,
-        y: y,
-        scale: this.glob.wly.scale0,
+        h: hh,
+        x: xx,
+        y: yy,
+        scale: scl,
         way: wway
       };
     };
@@ -411,7 +420,6 @@
       this.anim_jump.onComplete.add(this.turnJ, this);
       this.anim_down = this.spt.animations.add('dwn', [0, 1, 2, 1, 0], 20, false);
       this.anim_down.onComplete.add(this.turn, this);
-      this.make_tween_go_center_lily(1.2, 1.2);
       this.turn();
     }
 
@@ -450,12 +458,13 @@
         this.spt.animations.play('dwn');
         this.glob.spt.max_height = spt.y + 10;
         if (wly.key === "ellipse") {
-          if ((-4 < (ref = wly.y - spt.y - wly.body.height) && ref < 4)) {
+          if ((-10 < (ref = wly.y - spt.y - wly.body.height) && ref < 10)) {
             if (wly.flower_visible) {
-              return this.glob.spt.message = "bonus";
+              this.glob.spt.message = "bonus";
             } else {
-              return this.glob.spt.message = "win";
+              this.glob.spt.message = "win";
             }
+            return this.tween_go_center(wly.x, wly.y - spt.body.height / 2);
           } else {
             return this.glob.spt.message = "loose ellipse";
           }
@@ -483,12 +492,18 @@
       return this.mouse.dt = 0;
     };
 
-    Sprite.prototype.make_tween_go_center_lily = function(x0, y0) {
-      this.go_center_lily = this.gm.add.tween(this.spt.scale);
-      return this.go_center_lily.to({
+    Sprite.prototype.tween_go_center = function(x0, y0) {
+
+      /*@go_center_lily = @gm.add.tween (@spt.scale)
+      @go_center_lily.to(
+          { x: x0, y: y0 }
+          150, Phaser.Easing.Back.InOut).yoyo(true); #Phaser.Easing.Linear.None
+       */
+      this.go_center = this.gm.add.tween(this.spt);
+      return this.go_center.to({
         x: x0,
         y: y0
-      }, 150, Phaser.Easing.Back.InOut).yoyo(true);
+      }, 200, Phaser.Easing.Cubic.In, true);
     };
 
     Sprite.prototype.check_height = function(spt) {

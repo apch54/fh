@@ -52,10 +52,10 @@ class Phacker.Game.Sprite
         @anim_jump.onComplete.add( @turnJ, @ )
 
         @anim_down = @spt.animations.add 'dwn', [0, 1, 2, 1, 0], 20, false
-        @anim_down.onComplete.add(@turn,@)
+        @anim_down.onComplete.add(@turn, @)
 
         #@spt.frame = 0
-        @make_tween_go_center_lily 1.2, 1.2 #@wls[0].position.top.x + 50, @wls[0].position.top.y)
+        #@make_tween_go_center_lily 1.2, 1.2 #@wls[0].position.top.x + 50, @wls[0].position.top.y)
         @turn()
 
 
@@ -94,9 +94,11 @@ class Phacker.Game.Sprite
 
             if  wly.key is "ellipse"
                 #console.log "- #{@_fle_} : ",wly.flower_visible
-                if  -4 < (wly.y - spt.y - wly.body.height) < 4
+                if  -10 < (wly.y - spt.y - wly.body.height) < 10
                     if wly.flower_visible  then @glob.spt.message = "bonus"
-                    else    @glob.spt.message ="win"
+                    else    @glob.spt.message = "win"
+                    @tween_go_center(wly.x , wly.y - spt.body.height / 2)
+
                 else @glob.spt.message = "loose ellipse"
             else @glob.spt.message = "loose cylinder"
 
@@ -126,11 +128,20 @@ class Phacker.Game.Sprite
     # make tween  : go center lily leave
     # @spt tween
     #.----------.----------
-    make_tween_go_center_lily: (x0, y0) ->
-        @go_center_lily = @gm.add.tween (@spt.scale)
+    tween_go_center: (x0, y0) ->
+        ###@go_center_lily = @gm.add.tween (@spt.scale)
         @go_center_lily.to(
             { x: x0, y: y0 }
             150, Phaser.Easing.Back.InOut).yoyo(true); #Phaser.Easing.Linear.None
+
+        ###
+        @go_center = @gm.add.tween @spt
+        @go_center.to(
+            { x: x0, y: y0 }
+            200, Phaser.Easing.Cubic.In, true
+        )
+
+
 
     #.----------.----------
     # if sprite too low then loose
