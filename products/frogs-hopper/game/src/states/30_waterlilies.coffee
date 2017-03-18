@@ -8,7 +8,7 @@ class Phacker.Game.Waterlilies
             x0: if @gm.gameOptions.fullscreen  then @glob.bg.w - 70 else @glob.bg.w - 250 # for a left jump
             y0: @glob.bg.h + 20
             h0: 2
-            scale0: .7 #scale
+            scale0: .75 #scale
             dxmax: 275  # maximum waterlily dx
             dymax: 162
             tan: 162 / 275
@@ -38,23 +38,32 @@ class Phacker.Game.Waterlilies
         if @spt? then @spt.bringToTop() # sprite at the top layer
 
     #.----------.----------
-    # determine height,x,....
+    # determine height,x,...., 5 phases
+    # 1/ < 50  no variations
+    # 2/  100  scale variation
     #.----------.----------
     hxy_scale:(x0, y0)->
 
         wway = @left_or_right[@gm.rnd.integerInRange(0,1)]
         #wway = 'right'
 
-        #console.log "- #{@_fle_} : ","score : ",
-        if @gm.ge.score < 50
+        # 1/ < 50  no variation
+        if @gm.ge.score < 0
             hh = @glob.wly.h0
             xx = if wway is "left" then x0 - 130 else x0 + 130
             yy = y0 - 77
             scl = @glob.wly.scale0
 
+        # 2/  100  scale variations
+        else if @gm.ge.score < 50
+            hh = @glob.wly.h0
+            xx = if wway is "left" then x0 - 130 else x0 + 130
+            yy = y0 - 77
+            scl =  @gm.rnd.integerInRange( 55, 70 ) / 100 # between .7 to .3
+
 
         # @wls[2] is right over @wls[0] so put it a little far away
-        else if @gm.ge.score < 100
+        else if @gm.ge.score < 150
             if @wls[0].prm.way is wway then  dx = @gm.rnd.integerInRange 1, 2
             else dx = @gm.rnd.integerInRange 2, 2
 

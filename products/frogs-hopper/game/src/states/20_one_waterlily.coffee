@@ -12,6 +12,7 @@ class Phacker.Game.One_waterlily
     constructor: (@gm, @prm) -> #prm = {h:, x:, y:, scale:, way, init}
         @_fle_          = 'One waterlily'
         @glob = @gm.ge.parameters
+        #
 
         #Column parameters
         @glob.cylinder     =  { w:  10, h: 25 }  # cylinder size
@@ -28,9 +29,8 @@ class Phacker.Game.One_waterlily
         @hat = ''
 
         @make_waterlily( @prm.h, @prm.x, @prm.y, @prm.scale ) # stem hight, x0
-        #@make_tween_appear() # automatic on ce on creation
         @make_tween_climb()  # must be started
-
+        console.log "- #{@_fle_} : ", @prm
 
     #.----------.----------
     #make the waterlily

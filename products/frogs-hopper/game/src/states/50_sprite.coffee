@@ -129,19 +129,11 @@ class Phacker.Game.Sprite
     # @spt tween
     #.----------.----------
     tween_go_center: (x0, y0) ->
-        ###@go_center_lily = @gm.add.tween (@spt.scale)
-        @go_center_lily.to(
-            { x: x0, y: y0 }
-            150, Phaser.Easing.Back.InOut).yoyo(true); #Phaser.Easing.Linear.None
-
-        ###
         @go_center = @gm.add.tween @spt
         @go_center.to(
             { x: x0, y: y0 }
-            200, Phaser.Easing.Cubic.In, true
+            200, Phaser.Easing.Cubic.Out, true
         )
-
-
 
     #.----------.----------
     # if sprite too low then loose

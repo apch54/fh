@@ -62,6 +62,7 @@
       this.hat = '';
       this.make_waterlily(this.prm.h, this.prm.x, this.prm.y, this.prm.scale);
       this.make_tween_climb();
+      console.log("- " + this._fle_ + " : ", this.prm);
     }
 
     One_waterlily.prototype.make_waterlily = function(h, x0, y0, scale) {
@@ -210,7 +211,7 @@
         x0: this.gm.gameOptions.fullscreen ? this.glob.bg.w - 70 : this.glob.bg.w - 250,
         y0: this.glob.bg.h + 20,
         h0: 2,
-        scale0: .7,
+        scale0: .75,
         dxmax: 275,
         dymax: 162,
         tan: 162 / 275,
@@ -258,12 +259,17 @@
     Waterlilies.prototype.hxy_scale = function(x0, y0) {
       var dx, hh, scl, wway, xx, yy;
       wway = this.left_or_right[this.gm.rnd.integerInRange(0, 1)];
-      if (this.gm.ge.score < 50) {
+      if (this.gm.ge.score < 0) {
         hh = this.glob.wly.h0;
         xx = wway === "left" ? x0 - 130 : x0 + 130;
         yy = y0 - 77;
         scl = this.glob.wly.scale0;
-      } else if (this.gm.ge.score < 100) {
+      } else if (this.gm.ge.score < 50) {
+        hh = this.glob.wly.h0;
+        xx = wway === "left" ? x0 - 130 : x0 + 130;
+        yy = y0 - 77;
+        scl = this.gm.rnd.integerInRange(55, 70) / 100;
+      } else if (this.gm.ge.score < 150) {
         if (this.wls[0].prm.way === wway) {
           dx = this.gm.rnd.integerInRange(1, 2);
         } else {
@@ -493,17 +499,11 @@
     };
 
     Sprite.prototype.tween_go_center = function(x0, y0) {
-
-      /*@go_center_lily = @gm.add.tween (@spt.scale)
-      @go_center_lily.to(
-          { x: x0, y: y0 }
-          150, Phaser.Easing.Back.InOut).yoyo(true); #Phaser.Easing.Linear.None
-       */
       this.go_center = this.gm.add.tween(this.spt);
       return this.go_center.to({
         x: x0,
         y: y0
-      }, 200, Phaser.Easing.Cubic.In, true);
+      }, 200, Phaser.Easing.Cubic.Out, true);
     };
 
     Sprite.prototype.check_height = function(spt) {
