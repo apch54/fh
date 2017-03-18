@@ -40,40 +40,52 @@ class Phacker.Game.Waterlilies
         if @spt? then @spt.bringToTop() # sprite at the top layer
 
     #.----------.----------
-    # determine height,x,...., 5 phases
+    # determine height,x,y,scale :  4 phases
     # 1/ < 50  no variations
-    # 2/  100  scale variation
-    #.----------.----------
+    # 2/ < 100  scale variation
+    # 3/ var dx, dy  & scale
+    # 4/ var h (stem), dx, dy  & scale
+    # .----------.----------
     hxy_scale:(x0, y0)->
 
         wway = @left_or_right[@gm.rnd.integerInRange(0,1)]
         #wway = 'right'
 
         # 1/ < 50  no variation
-        if @gm.ge.score < 0
+        if @gm.ge.score < 50
             hh = @glob.wly.h0
             xx = if wway is "left" then x0 - 130 else x0 + 130
             yy = y0 - 77
             scl = @glob.wly.scale0
 
         # 2/  100  scale variations
-        else if @gm.ge.score < 50
+        else if @gm.ge.score < 100
             hh = @glob.wly.h0
             xx = if wway is "left" then x0 - 130 else x0 + 130
             yy = y0 - 77
             scl =  @scale_a[@gm.rnd.integerInRange(0, 3 )] # between .7 to .55
 
-
-        # @wls[2] is right over @wls[0] so put it a little far away
+        # 3/ var dx, dy  & scale
         else if @gm.ge.score < 150
-            if @wls[0].prm.way is wway then  dx = @gm.rnd.integerInRange 1, 2
+            if @wls[0].prm.way is wway then  dx = @gm.rnd.integerInRange 1, 3
             else dx = @gm.rnd.integerInRange 2, 2
 
             hh = @glob.wly.h0
-            dx = (3 + dx)* @glob.wly.dxmax / 8
+            dx = (3 + dx) * @glob.wly.dxmax / 8
             xx  = if wway is 'left' then  x0 - dx else  x0 + dx
             yy  = y0 - @glob.wly.tan * dx
-            scl = @glob.wly.scale0
+            scl =  @scale_a[@gm.rnd.integerInRange(0, 3 )] # between .7 to .55
+
+        # 4/ var h (stem), dx, dy  & scale
+        else
+            if @wls[0].prm.way is wway then  dx = @gm.rnd.integerInRange 1, 3
+            else dx = @gm.rnd.integerInRange 2, 2
+
+            hh = @gm.rnd.integerInRange 2, 3
+            dx = (3 + dx) * @glob.wly.dxmax / 8
+            xx  = if wway is 'left' then  x0 - dx else  x0 + dx
+            yy  = y0 - @glob.wly.tan * dx
+            scl =  @scale_a[@gm.rnd.integerInRange(0, 3 )] # between .7 to .55
 
         return { h:hh, x:xx, y:yy, scale: scl, way: wway } # s is scale
 

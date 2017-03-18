@@ -62,7 +62,6 @@
       this.hat = '';
       this.make_waterlily(this.prm.h, this.prm.x, this.prm.y, this.prm.scale);
       this.make_tween_climb();
-      console.log("- " + this._fle_ + " : ", this.prm);
     }
 
     One_waterlily.prototype.make_waterlily = function(h, x0, y0, scale) {
@@ -260,19 +259,19 @@
     Waterlilies.prototype.hxy_scale = function(x0, y0) {
       var dx, hh, scl, wway, xx, yy;
       wway = this.left_or_right[this.gm.rnd.integerInRange(0, 1)];
-      if (this.gm.ge.score < 0) {
+      if (this.gm.ge.score < 50) {
         hh = this.glob.wly.h0;
         xx = wway === "left" ? x0 - 130 : x0 + 130;
         yy = y0 - 77;
         scl = this.glob.wly.scale0;
-      } else if (this.gm.ge.score < 50) {
+      } else if (this.gm.ge.score < 100) {
         hh = this.glob.wly.h0;
         xx = wway === "left" ? x0 - 130 : x0 + 130;
         yy = y0 - 77;
         scl = this.scale_a[this.gm.rnd.integerInRange(0, 3)];
       } else if (this.gm.ge.score < 150) {
         if (this.wls[0].prm.way === wway) {
-          dx = this.gm.rnd.integerInRange(1, 2);
+          dx = this.gm.rnd.integerInRange(1, 3);
         } else {
           dx = this.gm.rnd.integerInRange(2, 2);
         }
@@ -280,7 +279,18 @@
         dx = (3 + dx) * this.glob.wly.dxmax / 8;
         xx = wway === 'left' ? x0 - dx : x0 + dx;
         yy = y0 - this.glob.wly.tan * dx;
-        scl = this.glob.wly.scale0;
+        scl = this.scale_a[this.gm.rnd.integerInRange(0, 3)];
+      } else {
+        if (this.wls[0].prm.way === wway) {
+          dx = this.gm.rnd.integerInRange(1, 3);
+        } else {
+          dx = this.gm.rnd.integerInRange(2, 2);
+        }
+        hh = this.gm.rnd.integerInRange(2, 3);
+        dx = (3 + dx) * this.glob.wly.dxmax / 8;
+        xx = wway === 'left' ? x0 - dx : x0 + dx;
+        yy = y0 - this.glob.wly.tan * dx;
+        scl = this.scale_a[this.gm.rnd.integerInRange(0, 3)];
       }
       return {
         h: hh,

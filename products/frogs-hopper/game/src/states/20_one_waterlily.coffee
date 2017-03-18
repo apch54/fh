@@ -30,7 +30,7 @@ class Phacker.Game.One_waterlily
 
         @make_waterlily( @prm.h, @prm.x, @prm.y, @prm.scale ) # stem hight, x0
         @make_tween_climb()  # must be started
-        console.log "- #{@_fle_} : ", @prm
+        #console.log "- #{@_fle_} : ", @prm
 
     #.----------.----------
     #make the waterlily
