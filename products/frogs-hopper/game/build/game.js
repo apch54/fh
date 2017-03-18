@@ -217,6 +217,7 @@
         tan: 162 / 275,
         way: 'left'
       };
+      this.scale_a = [this.glob.wly.scale0, .67, .60, .53];
       this.left_or_right = ['left', 'right'];
       this.wls = [];
       this.make_lily();
@@ -268,7 +269,7 @@
         hh = this.glob.wly.h0;
         xx = wway === "left" ? x0 - 130 : x0 + 130;
         yy = y0 - 77;
-        scl = this.gm.rnd.integerInRange(55, 70) / 100;
+        scl = this.scale_a[this.gm.rnd.integerInRange(0, 3)];
       } else if (this.gm.ge.score < 150) {
         if (this.wls[0].prm.way === wway) {
           dx = this.gm.rnd.integerInRange(1, 2);
@@ -512,6 +513,7 @@
       }
       if ((spt.y > this.wls[0].hat.y + 5) && (spt.body.velocity.y > 5) && !this.glob.spt.reseting) {
         this.glob.spt.tooLow = true;
+        this.wls[0].alpha = 0;
         return 'loose';
       } else {
         return 'ok';
@@ -626,7 +628,7 @@
       y1 = this.flw.y + 10;
       x2 = this.gm.rnd.integerInRange(40, 80);
       x2 = this.prm.way === 'left' ? x1 - x2 : x1 + x2;
-      y2 = this.flw.y + 150;
+      y2 = this.flw.y + 250;
       this.twn_escape = this.gm.add.tween(this.flw);
       this.twn_escape.to({
         x: x1,

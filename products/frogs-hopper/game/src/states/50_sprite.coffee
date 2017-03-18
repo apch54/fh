@@ -54,8 +54,6 @@ class Phacker.Game.Sprite
         @anim_down = @spt.animations.add 'dwn', [0, 1, 2, 1, 0], 20, false
         @anim_down.onComplete.add(@turn, @)
 
-        #@spt.frame = 0
-        #@make_tween_go_center_lily 1.2, 1.2 #@wls[0].position.top.x + 50, @wls[0].position.top.y)
         @turn()
 
 
@@ -144,6 +142,7 @@ class Phacker.Game.Sprite
         if (spt.y > @wls[0].hat.y + 5)  and (spt.body.velocity.y > 5) and not @glob.spt.reseting #@glob.spt.max_height
             #console.log "- #{@_fle_} : ",spt.y , @wls[1].hat.y , spt.body.velocity.y
             @glob.spt.tooLow = true
+            @wls[0].alpha = 0
             return 'loose'
         else return 'ok'
 

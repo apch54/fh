@@ -14,6 +14,8 @@ class Phacker.Game.Waterlilies
             tan: 162 / 275
             way: 'left'
 
+        @scale_a = [@glob.wly.scale0, .67, .60, .53]
+
         @left_or_right = ['left', 'right']
         @wls = []
         @make_lily()
@@ -59,7 +61,7 @@ class Phacker.Game.Waterlilies
             hh = @glob.wly.h0
             xx = if wway is "left" then x0 - 130 else x0 + 130
             yy = y0 - 77
-            scl =  @gm.rnd.integerInRange( 55, 70 ) / 100 # between .7 to .3
+            scl =  @scale_a[@gm.rnd.integerInRange(0, 3 )] # between .7 to .55
 
 
         # @wls[2] is right over @wls[0] so put it a little far away

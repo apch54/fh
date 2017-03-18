@@ -41,7 +41,7 @@ class Phacker.Game.Flower
     y1 = @flw.y + 10
     x2 = @gm.rnd.integerInRange 40, 80
     x2 = if @prm.way is 'left'  then  x1 - x2 else x1 + x2
-    y2 = @flw.y + 150
+    y2 = @flw.y + 250
 
     @twn_escape = @gm.add.tween @flw
     @twn_escape.to(
