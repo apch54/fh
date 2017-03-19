@@ -435,9 +435,10 @@
 
 (function() {
   Phacker.Game.Sprite = (function() {
-    function Sprite(gm, waterliliesO) {
+    function Sprite(gm, waterliliesO, mouseO) {
       this.gm = gm;
       this.waterliliesO = waterliliesO;
+      this.mouseO = mouseO;
       this._fle_ = 'Sprite';
       this.wls = this.waterliliesO.wls;
       this.glob = this.gm.ge.parameters;
@@ -492,6 +493,7 @@
 
     Sprite.prototype.when_collide = function(spt, wly) {
       var ref;
+      this.glob.spt.reseting = false;
       if (!this.glob.spt.has_collided) {
         spt.bringToTop();
         spt.body.velocity.x = 0;
@@ -526,14 +528,13 @@
     };
 
     Sprite.prototype.jump = function() {
-      if (!this.mouse.down && this.mouse.dt > 0 && !this.glob.spt.jumping) {
+      if (!this.mouse.down && this.mouse.dt > 0 && !this.glob.spt.jumping && !this.glob.spt.reseting) {
         if (this.spt.body == null) {
           return;
         }
         this.spt.animations.play('jmp');
         this.glob.spt.jumping = true;
         this.glob.spt.has_collided = false;
-        this.glob.spt.reseting = false;
         this.spt.y -= 20;
         this.spt.body.velocity.y = -this.mouse.dt * this.glob.jmp.vy;
         this.spt.body.velocity.x = this.waterliliesO.wls[1].prm.way === 'left' ? -this.mouse.dt * this.glob.jmp.vx : this.mouse.dt * this.glob.jmp.vx;
@@ -757,6 +758,7 @@
         this.wls[0].flw.flw.alpha = 0;
       }
       this.spriteO = new Phacker.Game.Sprite(this.game, this.waterliliesO);
+      this.glob.spt.reseting = true;
       this.spt = this.spriteO.spt;
       this.wls[1].scale(this.wls[1].prm.scale);
       return this.effectO.stop();
@@ -771,7 +773,7 @@
       this.waterliliesO = new Phacker.Game.Waterlilies(this.game);
       this.wls = this.waterliliesO.wls;
       this.mouseO.bind(this.waterliliesO);
-      this.spriteO = new Phacker.Game.Sprite(this.game, this.waterliliesO);
+      this.spriteO = new Phacker.Game.Sprite(this.game, this.waterliliesO, this.mouseO);
       this.spt = this.spriteO.spt;
       this.waterliliesO.bind_spt(this.spt);
       this.camO = new Phacker.Game.My_camera(this.game, this.waterliliesO);

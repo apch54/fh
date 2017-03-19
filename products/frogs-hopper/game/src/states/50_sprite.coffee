@@ -17,7 +17,7 @@ class Phacker.Game.Sprite
     # @spt stand for sprite
     # @waterliliisO  stands for waterlily obj
 
-    constructor: (@gm, @waterliliesO) -> # wls is array of waterlily obj
+    constructor: (@gm, @waterliliesO, @mouseO) -> # wls is array of waterlily obj
         @_fle_ = 'Sprite'
         @wls = @waterliliesO.wls
         @glob = @gm.ge.parameters
@@ -35,6 +35,7 @@ class Phacker.Game.Sprite
 
         # jmp parameters
         @mouse = @glob.mouse
+        #@mouseO.reset()
         @glob.jmp =
             vy: @glob.wly.dxmax / @glob.wly.dymax  *.45 # velocity on y axis
             vx: .6
@@ -62,7 +63,6 @@ class Phacker.Game.Sprite
     #.----------.----------
     collide: (waterlilies) ->
         for wls in waterlilies
-            #console.log "- #{@_fle_} : ",wls.flw.flw
             if wls.flw? then @gm.physics.arcade.collide(wls.flw.flw, wls.hat )
             if @gm.physics.arcade.collide(
                 @spt, wls.wl
@@ -76,7 +76,7 @@ class Phacker.Game.Sprite
     # call back when colliding
     #.----------.----------
     when_collide: (spt, wly)->
-
+        @glob.spt.reseting = false
         if not @glob.spt.has_collided
             spt.bringToTop()
             spt.body.velocity.x = 0 # stop here the sprite
@@ -107,17 +107,14 @@ class Phacker.Game.Sprite
     # test if mouse's up to jump the sprite
     #.----------.----------
     jump: ->
-        if not @mouse.down and @mouse.dt > 0 and not @glob.spt.jumping #and not @is_reseting
+        if not @mouse.down and @mouse.dt > 0 and not @glob.spt.jumping and not @glob.spt.reseting
             if not @spt.body? then return
-            #console.log "- #{@_fle_} : ", @mouse
-            #@spt.animations.play 'down'
             @spt.animations.play 'jmp'
             @glob.spt.jumping = true # no jump in jump
             @glob.spt.has_collided = false
-            @glob.spt.reseting = false
+            #@glob.spt.reseting = false
             @spt.y -= 20
             @spt.body.velocity.y = -@mouse.dt * @glob.jmp.vy #-@mouseO.mouse.dt * @vy
-            #console.log "- #{@_fle_} : ",@waterliliesO.wls[1].prm.way
             @spt.body.velocity.x =  if @waterliliesO.wls[1].prm.way is 'left' then -@mouse.dt * @glob.jmp.vx  else @mouse.dt * @glob.jmp.vx#gameOptions.pMaxDx * .75  # @mouseO.mouse.dt * @vy
 
         @mouse.dt = 0
@@ -140,10 +137,7 @@ class Phacker.Game.Sprite
         #console.log "- #{@_fle_} : ", spt.body.velocity.y
         if  @glob.spt.tooLow then return 'too low yet'
         if (spt.y > @wls[0].hat.y + 25)  and (spt.body.velocity.y > 5) and not @glob.spt.reseting #@glob.spt.max_height
-            #console.log "- #{@_fle_} : ",spt.y , @wls[1].hat.y , spt.body.velocity.y
             @glob.spt.tooLow = true
-            #@wls[0].flw.flw.destroy() if @wls[0].flw?
-            #@wls[1].flw.flw.destroy() if @wls[1].flw?
             return 'loose'
         else return 'ok'
 

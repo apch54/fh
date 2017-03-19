@@ -40,6 +40,7 @@ class @YourGame extends Phacker.GameState
         @wls[0].flw.flw.alpha = 0 if @wls[0].flw?
 
         @spriteO = new Phacker.Game.Sprite @game, @waterliliesO
+        @glob.spt.reseting = true
         @spt = @spriteO.spt
         @wls[1].scale  @wls[1].prm.scale
         @effectO.stop() # destroy effect
@@ -59,7 +60,7 @@ class @YourGame extends Phacker.GameState
         @wls = @waterliliesO.wls #array of lilies
         @mouseO.bind @waterliliesO
 
-        @spriteO = new Phacker.Game.Sprite @game, @waterliliesO
+        @spriteO = new Phacker.Game.Sprite @game, @waterliliesO, @mouseO
         @spt = @spriteO.spt
         @waterliliesO.bind_spt @spt
 

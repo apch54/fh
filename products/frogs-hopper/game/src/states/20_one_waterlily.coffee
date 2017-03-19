@@ -50,7 +50,7 @@ class Phacker.Game.One_waterlily
         @hat.anchor.setTo  .5, 1
         @hat.body.immovable = true
         @hat.alpha = if @prm.init < 2 then 1 else 0
-        @hat.angle = if @prm.way is "left" then  8 else  -8
+        @hat.angle = if @prm.way is "left" then  8 else -8
         @hat.flower_visible = false
 
 

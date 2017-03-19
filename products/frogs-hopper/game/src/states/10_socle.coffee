@@ -26,11 +26,10 @@ class Phacker.Game.Socle
             middleX: if @gm.gameOptions.fullscreen  then 187 else 384
 
         @xtr = {x0:70, y0: 320, r: 20, tta:0, vta: .005 }
-        if @gm.gameOptions.fullscreen then @xtr = {x0: 50, y0: 480, r: 20, tta:0, vta: .005 }
+        if @gm.gameOptions.fullscreen then @xtr = { x0: 50, y0: 480, r: 20, tta:0, vta: .005 }
 
         @draw_bg()
         @extra_lily()
-        #@draw_last_sea()
 
     #.----------.----------
     # build socle
