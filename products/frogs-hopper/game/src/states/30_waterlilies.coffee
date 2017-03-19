@@ -87,7 +87,7 @@ class Phacker.Game.Waterlilies
             yy  = y0 - @glob.wly.tan * dx
             scl =  @scale_a[@gm.rnd.integerInRange(0, 3 )] # between .7 to .55
 
-        return { h:hh, x:xx, y:yy, scale: scl, way: wway } # s is scale
+        return { h:hh, x:xx, y:yy, scale: scl, way: wway } # way is left or right
 
     #.----------.----------
     # add_destroy lilies

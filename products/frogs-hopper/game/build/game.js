@@ -11,7 +11,15 @@
         h: this.gm.gameOptions.fullscreen ? 559 - 48 : 500 - 48,
         middleX: this.gm.gameOptions.fullscreen ? 187 : 384
       };
+      this.xtr = {
+        x0: 90,
+        y0: 390,
+        r: 20,
+        tta: 0,
+        vta: .005
+      };
       this.draw_bg();
+      this.extra_lily();
     }
 
     Socle.prototype.draw_bg = function() {
@@ -22,6 +30,22 @@
       this.bg_btn.alpha = 0;
       this.bg_btn.inputEnabled = true;
       return this.bg_btn.bringToTop();
+    };
+
+    Socle.prototype.extra_lily = function() {
+      this.extra_ll = this.gm.add.sprite(this.xtr.x0, this.xtr.y0, "ellipse");
+      this.extra_ll.scale.setTo(.7, .7);
+      this.extra_ll.alpha = .75;
+      return this.extra_ll.anchor.setTo(.5, 1);
+    };
+
+    Socle.prototype.move_extra = function(cam) {
+      var xx, yy;
+      this.xtr.tta += this.xtr.vta;
+      xx = 1.5 * this.xtr.r * Math.cos(this.xtr.tta);
+      yy = -Math.abs(this.xtr.r * Math.sin(this.xtr.tta));
+      this.extra_ll.x = this.xtr.x0 + xx + this.gm.camera.x;
+      return this.extra_ll.y = this.xtr.y0 + yy + this.gm.camera.y;
     };
 
     return Socle;
@@ -99,7 +123,7 @@
 
     One_waterlily.prototype.make_flower = function() {
       var vsi;
-      if (this.gm.rnd.integerInRange(0, 3) === 0) {
+      if (this.gm.rnd.integerInRange(0, 2) === 0) {
         vsi = true;
       } else {
         vsi = false;
@@ -523,7 +547,6 @@
       }
       if ((spt.y > this.wls[0].hat.y + 5) && (spt.body.velocity.y > 5) && !this.glob.spt.reseting) {
         this.glob.spt.tooLow = true;
-        this.wls[0].alpha = 0;
         return 'loose';
       } else {
         return 'ok';
@@ -632,26 +655,23 @@
     };
 
     Flower.prototype.make_twn_escape = function() {
-      var x1, x2, y1, y2;
-      x1 = this.gm.rnd.integerInRange(40, 80);
-      x1 = this.prm.way === 'left' ? this.flw.x - x1 : this.flw.x + x1;
-      y1 = this.flw.y + 10;
-      x2 = this.gm.rnd.integerInRange(40, 80);
-      x2 = this.prm.way === 'left' ? x1 - x2 : x1 + x2;
-      y2 = this.flw.y + 250;
+      var x1, y1;
+      y1 = this.gm.rnd.integerInRange(-1, 1);
+      x1 = this.prm.way === 'left' ? this.flw.x - 400 : this.flw.x + 400;
+      y1 = 160 * y1 + this.flw.y;
+      console.log("- " + this._fle_ + " : ", y1);
       this.twn_escape = this.gm.add.tween(this.flw);
       this.twn_escape.to({
         x: x1,
-        y: this.flw.y - 10
-      }, 200, Phaser.Easing.Bounce.In);
+        y: y1
+      }, 400, Phaser.Easing.Linear.None);
       return this.twn_escape.onComplete.addOnce(function() {
-        var e;
-        e = this.gm.add.tween(this.flw);
-        e.to({
-          x: x2,
-          y: y2
-        }, 300, Phaser.Easing.Cubic.In);
-        return e.start();
+        return this.flw.destroy();
+
+        /*e = @gm.add.tween(@flw);
+        e.to { x: x2, y: y2 }, 300, Phaser.Easing.Cubic.In
+        e.start()
+         */
       }, this);
     };
 
@@ -720,7 +740,8 @@
         this.effectO.play(this.spriteO);
         this.lostLife();
       }
-      return this.waterliliesO.add_destroy(this.spt);
+      this.waterliliesO.add_destroy(this.spt);
+      return this.socleO.move_extra(this.camO);
     };
 
     YourGame.prototype.resetPlayer = function() {

@@ -36,23 +36,25 @@ class Phacker.Game.Flower
   #.----------.----------
   make_twn_escape:  -> #smooth lily flower escaping
 
-    x1 = @gm.rnd.integerInRange 40, 80
-    x1 = if @prm.way is 'left'  then @flw.x - x1 else @flw.x + x1
-    y1 = @flw.y + 10
-    x2 = @gm.rnd.integerInRange 40, 80
-    x2 = if @prm.way is 'left'  then  x1 - x2 else x1 + x2
-    y2 = @flw.y + 250
+    y1 = @gm.rnd.integerInRange -1, 1
+    x1 = if @prm.way is 'left'  then @flw.x - 400 else @flw.x + 400
+    y1 = 160 * y1 + @flw.y
+    console.log "- #{@_fle_} : ", y1
+#    x2 = @gm.rnd.integerInRange 40, 80
+#    x2 = if @prm.way is 'left'  then  x1 - x2 else x1 + x2
+#    y2 = @flw.y + 250
 
     @twn_escape = @gm.add.tween @flw
     @twn_escape.to(
-      { x: x1, y:@flw.y - 10 }
-      200, Phaser.Easing.Bounce.In
+      { x: x1, y:y1}
+      400, Phaser.Easing.Linear.None
     )
     @twn_escape.onComplete.addOnce(
       ->
-        e = @gm.add.tween(@flw);
+        @flw.destroy()
+        ###e = @gm.add.tween(@flw);
         e.to { x: x2, y: y2 }, 300, Phaser.Easing.Cubic.In
-        e.start()
+        e.start()###
       this
     )
 

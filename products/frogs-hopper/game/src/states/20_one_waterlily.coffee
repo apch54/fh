@@ -76,7 +76,8 @@ class Phacker.Game.One_waterlily
     # make a flower
     #----------.----------
     make_flower: () ->
-        if @gm.rnd.integerInRange(0,3) is 0 then vsi = true else vsi = false # 1/3 chance to have a flower
+
+        if @gm.rnd.integerInRange(0,2) is 0 then vsi = true else vsi = false # 1/3 chance to have a flower
         @flw = new Phacker.Game.Flower(@gm, {x0:@position.top.x, y0:@position.top.y, way: @prm.way, visible: vsi } )
 
         @hat.flower_visible = vsi

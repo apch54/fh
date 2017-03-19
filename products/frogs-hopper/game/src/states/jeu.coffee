@@ -32,6 +32,7 @@ class @YourGame extends Phacker.GameState
             @lostLife()
 
         @waterliliesO.add_destroy @spt
+        @socleO.move_extra(@camO)
 
     resetPlayer: ->
         #console.log "Reset the player"

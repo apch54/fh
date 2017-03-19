@@ -142,7 +142,8 @@ class Phacker.Game.Sprite
         if (spt.y > @wls[0].hat.y + 5)  and (spt.body.velocity.y > 5) and not @glob.spt.reseting #@glob.spt.max_height
             #console.log "- #{@_fle_} : ",spt.y , @wls[1].hat.y , spt.body.velocity.y
             @glob.spt.tooLow = true
-            @wls[0].alpha = 0
+            #@wls[0].flw.flw.destroy() if @wls[0].flw?
+            #@wls[1].flw.flw.destroy() if @wls[1].flw?
             return 'loose'
         else return 'ok'
 
