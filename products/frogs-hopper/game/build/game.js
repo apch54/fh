@@ -101,20 +101,16 @@
 
     One_waterlily.prototype.make_waterlily = function(h, x0, y0, scale) {
       var c, foo, i, ref;
-      c = this.gm.add.sprite(x0, y0, "cylinder");
-      this.cldr.push(c);
-      c.anchor.setTo(.5, 1);
-      c.alpha = this.prm.init < 2 ? 1 : .1;
       this.position.bottom = {
         x: x0,
         y: y0
       };
       for (foo = i = 0, ref = h - 2; 0 <= ref ? i <= ref : i >= ref; foo = 0 <= ref ? ++i : --i) {
-        y0 -= this.glob.cylinder.h;
+        y0 -= this.glob.cylinder.h * foo;
         c = this.gm.add.sprite(x0, y0, "cylinder");
         this.cldr.push(c);
         c.anchor.setTo(.5, 1);
-        c.alpha = this.prm.init < 2 ? 1 : .1;
+        c.alpha = this.prm.init < 2 ? 1 : 0;
       }
       y0 -= this.glob.cylinder.h - 5;
       this.hat = this.wl.create(x0, y0, "ellipse");
@@ -122,7 +118,7 @@
       this.hat.scale.setTo(scale, scale);
       this.hat.anchor.setTo(.5, 1);
       this.hat.body.immovable = true;
-      this.hat.alpha = this.prm.init < 2 ? 1 : .1;
+      this.hat.alpha = this.prm.init < 2 ? 1 : 0;
       this.hat.flower_visible = false;
       this.hat.prms = this.prms;
       this.position.top = {
@@ -244,7 +240,7 @@
       this.glob.wly = {
         x0: this.gm.gameOptions.fullscreen ? this.glob.bg.w - 70 : this.glob.bg.w - 250,
         y0: this.glob.bg.h + 20,
-        h0: 2,
+        h0: 3,
         scale0: .75,
         dxmax: 275,
         dymax: 162,
@@ -321,7 +317,7 @@
         } else {
           dx = this.gm.rnd.integerInRange(2, 2);
         }
-        hh = this.gm.rnd.integerInRange(2, 3);
+        hh = this.gm.rnd.integerInRange(2, 4);
         dx = (3 + dx) * this.glob.wly.dxmax / 8;
         xx = wway === 'left' ? x0 - dx : x0 + dx;
         yy = y0 - this.glob.wly.tan * dx;

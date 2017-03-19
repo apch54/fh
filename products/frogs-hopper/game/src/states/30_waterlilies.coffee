@@ -7,7 +7,7 @@ class Phacker.Game.Waterlilies
         @glob.wly  =
             x0: if @gm.gameOptions.fullscreen  then @glob.bg.w - 70 else @glob.bg.w - 250 # for a left jump
             y0: @glob.bg.h + 20
-            h0: 2
+            h0: 3
             scale0: .75 #scale
             dxmax: 275  # maximum waterlily dx
             dymax: 162
@@ -81,7 +81,7 @@ class Phacker.Game.Waterlilies
             if @wls[0].prm.way is wway then  dx = @gm.rnd.integerInRange 1, 3
             else dx = @gm.rnd.integerInRange 2, 2
 
-            hh = @gm.rnd.integerInRange 2, 3
+            hh = @gm.rnd.integerInRange 2, 4
             dx = (3 + dx) * @glob.wly.dxmax / 8
             xx  = if wway is 'left' then  x0 - dx else  x0 + dx
             yy  = y0 - @glob.wly.tan * dx
