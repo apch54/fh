@@ -32,17 +32,16 @@ class Phacker.Game.Flower
 
   #.----------.----------
   # make tween  : escape when sprite collide leaf of lily leafe
-  # 2 step : horizontal then vertical
   #.----------.----------
   make_twn_escape:  -> #smooth lily flower escaping
 
     y1 = @gm.rnd.integerInRange -1, 1
     x1 = if @prm.way is 'left'  then @flw.x - 400 else @flw.x + 400
-    y1 = 160 * y1 + @flw.y
-    console.log "- #{@_fle_} : ", y1
-#    x2 = @gm.rnd.integerInRange 40, 80
-#    x2 = if @prm.way is 'left'  then  x1 - x2 else x1 + x2
-#    y2 = @flw.y + 250
+    y1 = 200 * y1 + @flw.y
+    #  console.log "- #{@_fle_} : ", y1
+    #    x2 = @gm.rnd.integerInRange 40, 80
+    #    x2 = if @prm.way is 'left'  then  x1 - x2 else x1 + x2
+    #    y2 = @flw.y + 250
 
     @twn_escape = @gm.add.tween @flw
     @twn_escape.to(

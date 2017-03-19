@@ -12,12 +12,21 @@
         middleX: this.gm.gameOptions.fullscreen ? 187 : 384
       };
       this.xtr = {
-        x0: 90,
-        y0: 390,
+        x0: 70,
+        y0: 320,
         r: 20,
         tta: 0,
         vta: .005
       };
+      if (this.gm.gameOptions.fullscreen) {
+        this.xtr = {
+          x0: 50,
+          y0: 480,
+          r: 20,
+          tta: 0,
+          vta: .005
+        };
+      }
       this.draw_bg();
       this.extra_lily();
     }
@@ -35,17 +44,19 @@
     Socle.prototype.extra_lily = function() {
       this.extra_ll = this.gm.add.sprite(this.xtr.x0, this.xtr.y0, "ellipse");
       this.extra_ll.scale.setTo(.7, .7);
-      this.extra_ll.alpha = .75;
-      return this.extra_ll.anchor.setTo(.5, 1);
+      this.extra_ll.alpha = this.gm.gameOptions.fullscreen ? 0 : .6;
+      return this.extra_flw = this.gm.add.sprite(this.xtr.x0 + 10, this.xtr.y0 + 10, "bonus");
     };
 
     Socle.prototype.move_extra = function(cam) {
       var xx, yy;
       this.xtr.tta += this.xtr.vta;
-      xx = 1.5 * this.xtr.r * Math.cos(this.xtr.tta);
+      xx = 2 * this.xtr.r * Math.cos(this.xtr.tta);
       yy = -Math.abs(this.xtr.r * Math.sin(this.xtr.tta));
       this.extra_ll.x = this.xtr.x0 + xx + this.gm.camera.x;
-      return this.extra_ll.y = this.xtr.y0 + yy + this.gm.camera.y;
+      this.extra_ll.y = this.xtr.y0 + yy + this.gm.camera.y;
+      this.extra_flw.x = this.extra_ll.x;
+      return this.extra_flw.y = this.extra_ll.y;
     };
 
     return Socle;
@@ -658,8 +669,7 @@
       var x1, y1;
       y1 = this.gm.rnd.integerInRange(-1, 1);
       x1 = this.prm.way === 'left' ? this.flw.x - 400 : this.flw.x + 400;
-      y1 = 160 * y1 + this.flw.y;
-      console.log("- " + this._fle_ + " : ", y1);
+      y1 = 200 * y1 + this.flw.y;
       this.twn_escape = this.gm.add.tween(this.flw);
       this.twn_escape.to({
         x: x1,
