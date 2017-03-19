@@ -12,18 +12,15 @@ class Phacker.Game.One_waterlily
     constructor: (@gm, @prm) -> #prm = {h:, x:, y:, scale:, way, init}
         @_fle_          = 'One waterlily'
         @glob = @gm.ge.parameters
-        #
 
         #Column parameters
         @glob.cylinder     =  { w:  10, h: 25 }  # cylinder size
         @glob.ellipse      =  { w: 160, h: 80 }  # ellipse
 
         @position = {top:{x:0, y:0}, bottom:{x:0,y:0}}
-        #@prm.position = @position
         @has_appeared = false
 
         @wl = @gm.add.physicsGroup() # waterlily
-
         @wl.enableBody = true
         @cldr = [] #cylinder or stem (part)
         @hat = ''
@@ -38,13 +35,6 @@ class Phacker.Game.One_waterlily
 
     make_waterlily:(h, x0, y0, scale)-> # number of stem, x location & scale
         @position.bottom = {x: x0, y: y0 }
-        #h must be > 2
-        #c = @gm.add.sprite x0, y0, "cylinder" #@wl.create x0, y0, "cylinder"
-        #@cldr.push c
-        #c.anchor.setTo  .5, 1
-        #c.alpha = if @prm.init < 2 then 1 else 0
-
-
         for foo in [0.. h-2] #draw column center part
             y0 -= @glob.cylinder.h * foo
             c=  @gm.add.sprite x0, y0, "cylinder" #@wl.create x0, y0, "cylinder" # create one element of the column
@@ -60,6 +50,7 @@ class Phacker.Game.One_waterlily
         @hat.anchor.setTo  .5, 1
         @hat.body.immovable = true
         @hat.alpha = if @prm.init < 2 then 1 else 0
+        @hat.angle = if @prm.way is "left" then  8 else  -8
         @hat.flower_visible = false
 
 

@@ -85,7 +85,7 @@ class Phacker.Game.Waterlilies
             dx = (3 + dx) * @glob.wly.dxmax / 8
             xx  = if wway is 'left' then  x0 - dx else  x0 + dx
             yy  = y0 - @glob.wly.tan * dx
-            scl =  @scale_a[@gm.rnd.integerInRange(0, 3 )] # between .7 to .55
+            scl =  @scale_a[@gm.rnd.integerInRange(0, 3 )]
 
         return { h:hh, x:xx, y:yy, scale: scl, way: wway } # way is left or right
 

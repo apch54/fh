@@ -139,7 +139,7 @@ class Phacker.Game.Sprite
     check_height: (spt) ->
         #console.log "- #{@_fle_} : ", spt.body.velocity.y
         if  @glob.spt.tooLow then return 'too low yet'
-        if (spt.y > @wls[0].hat.y + 5)  and (spt.body.velocity.y > 5) and not @glob.spt.reseting #@glob.spt.max_height
+        if (spt.y > @wls[0].hat.y + 25)  and (spt.body.velocity.y > 5) and not @glob.spt.reseting #@glob.spt.max_height
             #console.log "- #{@_fle_} : ",spt.y , @wls[1].hat.y , spt.body.velocity.y
             @glob.spt.tooLow = true
             #@wls[0].flw.flw.destroy() if @wls[0].flw?

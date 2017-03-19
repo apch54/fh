@@ -119,6 +119,7 @@
       this.hat.anchor.setTo(.5, 1);
       this.hat.body.immovable = true;
       this.hat.alpha = this.prm.init < 2 ? 1 : 0;
+      this.hat.angle = this.prm.way === "left" ? 8 : -8;
       this.hat.flower_visible = false;
       this.hat.prms = this.prms;
       this.position.top = {
@@ -552,7 +553,7 @@
       if (this.glob.spt.tooLow) {
         return 'too low yet';
       }
-      if ((spt.y > this.wls[0].hat.y + 5) && (spt.body.velocity.y > 5) && !this.glob.spt.reseting) {
+      if ((spt.y > this.wls[0].hat.y + 25) && (spt.body.velocity.y > 5) && !this.glob.spt.reseting) {
         this.glob.spt.tooLow = true;
         return 'loose';
       } else {
@@ -650,7 +651,7 @@
 
     Flower.prototype.make_flower = function() {
       var xx, yy;
-      yy = this.prm.y0 - this.gm.rnd.integerInRange(10, 25);
+      yy = this.prm.y0 - this.gm.rnd.integerInRange(20, 35);
       xx = this.gm.rnd.integerInRange(20, 50);
       xx = this.prm.way === 'left' ? this.prm.x0 - xx : this.prm.x0 + xx;
       this.flw = this.gm.add.sprite(xx, yy, 'bonus');

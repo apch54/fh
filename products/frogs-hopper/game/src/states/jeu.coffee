@@ -44,9 +44,6 @@ class @YourGame extends Phacker.GameState
         @wls[1].scale  @wls[1].prm.scale
         @effectO.stop() # destroy effect
 
-        #@bonus_sound.play()
-        #@spriteO.reset()
-
     create: ->
         super() #Required
 
