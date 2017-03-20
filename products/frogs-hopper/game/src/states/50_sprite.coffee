@@ -37,8 +37,8 @@ class Phacker.Game.Sprite
         @mouse = @glob.mouse
         #@mouseO.reset()
         @glob.jmp =
-            vy: @glob.wly.dxmax / @glob.wly.dymax  *.45 # velocity on y axis
-            vx: .6
+            vy: @glob.wly.dxmax / @glob.wly.dymax  *.4 # velocity on y axis
+            vx:  @gm.gameOptions.jump_power
             g: 700 # gravity
 
         @spt = @gm.add.sprite @wls[0].position.top.x, @wls[0].position.top.y  - 20, 'character_sprite', 6 #35x60

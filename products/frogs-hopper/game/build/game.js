@@ -238,17 +238,17 @@
       this.gm = gm;
       this._fle_ = 'Waterlilies';
       this.glob = this.gm.ge.parameters;
+      this.scale_a = [.75, .67, .60, .53];
       this.glob.wly = {
         x0: this.gm.gameOptions.fullscreen ? this.glob.bg.w - 70 : this.glob.bg.w - 250,
         y0: this.glob.bg.h + 20,
         h0: 3,
-        scale0: .75,
+        scale0: this.scale_a[0],
         dxmax: 275,
         dymax: 162,
         tan: 162 / 275,
         way: 'left'
       };
-      this.scale_a = [this.glob.wly.scale0, .67, .60, .53];
       this.left_or_right = ['left', 'right'];
       this.wls = [];
       this.make_lily();
@@ -308,7 +308,7 @@
           dx = this.gm.rnd.integerInRange(2, 2);
         }
         hh = this.glob.wly.h0;
-        dx = (3 + dx) * this.glob.wly.dxmax / 8;
+        dx = (3 + dx) * this.glob.wly.dxmax / 9;
         xx = wway === 'left' ? x0 - dx : x0 + dx;
         yy = y0 - this.glob.wly.tan * dx;
         scl = this.scale_a[this.gm.rnd.integerInRange(0, 3)];
@@ -319,7 +319,7 @@
           dx = this.gm.rnd.integerInRange(2, 2);
         }
         hh = this.gm.rnd.integerInRange(2, 4);
-        dx = (3 + dx) * this.glob.wly.dxmax / 8;
+        dx = (3 + dx) * this.glob.wly.dxmax / 9;
         xx = wway === 'left' ? x0 - dx : x0 + dx;
         yy = y0 - this.glob.wly.tan * dx;
         scl = this.scale_a[this.gm.rnd.integerInRange(0, 3)];
@@ -455,8 +455,8 @@
       };
       this.mouse = this.glob.mouse;
       this.glob.jmp = {
-        vy: this.glob.wly.dxmax / this.glob.wly.dymax * .45,
-        vx: .6,
+        vy: this.glob.wly.dxmax / this.glob.wly.dymax * .4,
+        vx: this.gm.gameOptions.jump_power,
         g: 700
       };
       this.spt = this.gm.add.sprite(this.wls[0].position.top.x, this.wls[0].position.top.y - 20, 'character_sprite', 6);

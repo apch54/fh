@@ -43,7 +43,7 @@ class @YourGame extends Phacker.GameState
         @glob.spt.reseting = true
         @spt = @spriteO.spt
         @wls[1].scale  @wls[1].prm.scale
-        @effectO.stop() # destroy effect
+        @effectO.stop() # stop and destroy effect
 
     create: ->
         super() #Required

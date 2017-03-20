@@ -4,23 +4,23 @@ class Phacker.Game.Waterlilies
     constructor: (@gm) ->
         @_fle_              = 'Waterlilies'
         @glob               = @gm.ge.parameters
+        @scale_a = [.75, .67, .60, .53]
         @glob.wly  =
             x0: if @gm.gameOptions.fullscreen  then @glob.bg.w - 70 else @glob.bg.w - 250 # for a left jump
             y0: @glob.bg.h + 20
             h0: 3
-            scale0: .75 #scale
+            scale0: @scale_a[0] #.75 #scale
             dxmax: 275  # maximum waterlily dx
             dymax: 162
             tan: 162 / 275
             way: 'left'
-
-        @scale_a = [@glob.wly.scale0, .67, .60, .53]
 
         @left_or_right = ['left', 'right']
         @wls = []
         @make_lily()
         @make_lily()
         @make_lily()
+        #@gm.ge.score = 145
 
     #.----------.----------
     # make a waterlily
@@ -71,7 +71,7 @@ class Phacker.Game.Waterlilies
             else dx = @gm.rnd.integerInRange 2, 2
 
             hh = @glob.wly.h0
-            dx = (3 + dx) * @glob.wly.dxmax / 8
+            dx = (3 + dx) * @glob.wly.dxmax / 9
             xx  = if wway is 'left' then  x0 - dx else  x0 + dx
             yy  = y0 - @glob.wly.tan * dx
             scl =  @scale_a[@gm.rnd.integerInRange(0, 3 )] # between .7 to .55
@@ -82,11 +82,11 @@ class Phacker.Game.Waterlilies
             else dx = @gm.rnd.integerInRange 2, 2
 
             hh = @gm.rnd.integerInRange 2, 4
-            dx = (3 + dx) * @glob.wly.dxmax / 8
+            dx = (3 + dx) * @glob.wly.dxmax / 9
             xx  = if wway is 'left' then  x0 - dx else  x0 + dx
             yy  = y0 - @glob.wly.tan * dx
             scl =  @scale_a[@gm.rnd.integerInRange(0, 3 )]
-
+            #console.log "- #{@_fle_} : ", { h:hh, x:xx, y:yy, scale: scl, way: wway }
         return { h:hh, x:xx, y:yy, scale: scl, way: wway } # way is left or right
 
     #.----------.----------

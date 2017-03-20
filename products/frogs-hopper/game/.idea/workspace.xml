@@ -4,8 +4,7 @@
     <list default="true" id="0935c1d8-2c6e-459e-a360-2d544488b447" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/game.js" afterPath="$PROJECT_DIR$/build/game.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/10_socle.coffee" afterPath="$PROJECT_DIR$/src/states/10_socle.coffee" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/20_one_waterlily.coffee" afterPath="$PROJECT_DIR$/src/states/20_one_waterlily.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/30_waterlilies.coffee" afterPath="$PROJECT_DIR$/src/states/30_waterlilies.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/50_sprite.coffee" afterPath="$PROJECT_DIR$/src/states/50_sprite.coffee" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/jeu.coffee" afterPath="$PROJECT_DIR$/src/states/jeu.coffee" />
     </list>
@@ -36,8 +35,8 @@
       <file leaf-file-name="10_socle.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/10_socle.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="407">
-              <caret line="31" column="21" lean-forward="false" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+            <state relative-caret-position="340">
+              <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -46,18 +45,18 @@
       <file leaf-file-name="20_one_waterlily.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/20_one_waterlily.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
+            <state relative-caret-position="20">
               <caret line="52" column="56" lean-forward="false" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="30_waterlilies.coffee" pinned="false" current-in-tab="false">
+      <file leaf-file-name="30_waterlilies.coffee" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/states/30_waterlilies.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-20">
-              <caret line="87" column="58" lean-forward="false" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
+            <state relative-caret-position="440">
+              <caret line="88" column="13" lean-forward="false" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -76,8 +75,8 @@
       <file leaf-file-name="50_sprite.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/50_sprite.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="33" />
+            <state relative-caret-position="340">
+              <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -86,18 +85,18 @@
       <file leaf-file-name="40_mouse.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/40_mouse.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="94">
+            <state relative-caret-position="900">
               <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jeu.coffee" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jeu.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="114">
-              <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+            <state relative-caret-position="-206">
+              <caret line="37" column="39" lean-forward="true" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -160,12 +159,12 @@
         <option value="$PROJECT_DIR$/src/states/70_fowers.coffee" />
         <option value="$PROJECT_DIR$/src/states/40_mouse.coffee" />
         <option value="$PROJECT_DIR$/src/states/80_effect.coffee" />
-        <option value="$PROJECT_DIR$/src/states/30_waterlilies.coffee" />
         <option value="$PROJECT_DIR$/src/states/70_flower.coffee" />
         <option value="$PROJECT_DIR$/src/states/20_one_waterlily.coffee" />
         <option value="$PROJECT_DIR$/src/states/10_socle.coffee" />
-        <option value="$PROJECT_DIR$/src/states/50_sprite.coffee" />
         <option value="$PROJECT_DIR$/src/states/jeu.coffee" />
+        <option value="$PROJECT_DIR$/src/states/50_sprite.coffee" />
+        <option value="$PROJECT_DIR$/src/states/30_waterlilies.coffee" />
       </list>
     </option>
   </component>
@@ -205,8 +204,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="251" />
-    <option name="y" value="62" />
+    <option name="x" value="409" />
+    <option name="y" value="72" />
     <option name="width" value="1419" />
     <option name="height" value="968" />
   </component>
@@ -242,8 +241,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -377,10 +376,22 @@
       <envs />
       <method />
     </configuration>
-    <list size="3">
+    <configuration default="false" name="zip" type="js.build_tools.gulp" factoryName="Gulp.js">
+      <node-interpreter>project</node-interpreter>
+      <node-options />
+      <gulpfile>$PROJECT_DIR$/gulpfile.js</gulpfile>
+      <tasks>
+        <task>zip</task>
+      </tasks>
+      <arguments />
+      <envs />
+      <method />
+    </configuration>
+    <list size="4">
       <item index="0" class="java.lang.String" itemvalue="Gulp.js.default" />
-      <item index="1" class="java.lang.String" itemvalue="Node.js.gulpfile.js" />
-      <item index="2" class="java.lang.String" itemvalue="Node.js.10_socle.coffee" />
+      <item index="1" class="java.lang.String" itemvalue="Gulp.js.zip" />
+      <item index="2" class="java.lang.String" itemvalue="Node.js.gulpfile.js" />
+      <item index="3" class="java.lang.String" itemvalue="Node.js.10_socle.coffee" />
     </list>
     <recent_temporary>
       <list size="2">
@@ -447,7 +458,9 @@
       <workItem from="1489767030462" duration="8206000" />
       <workItem from="1489842795652" duration="6377000" />
       <workItem from="1489914238110" duration="8767000" />
-      <workItem from="1489944612598" duration="5474000" />
+      <workItem from="1489944612598" duration="6037000" />
+      <workItem from="1489999274957" duration="2105000" />
+      <workItem from="1490029904138" duration="4699000" />
     </task>
     <task id="LOCAL-00001" summary="loose over w[1]&#10;setror in one waterly">
       <created>1489651240614</created>
@@ -561,11 +574,18 @@
       <option name="project" value="LOCAL" />
       <updated>1489947037302</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="bug when reseting">
+      <created>1489950127449</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1489950127449</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="328356000" />
+    <option name="totallyTimeSpent" value="335723000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -577,11 +597,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="251" y="62" width="1419" height="968" extended-state="0" />
+    <frame x="409" y="72" width="1419" height="968" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20943709" sideWeight="0.40922618" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19473264" sideWeight="0.5907738" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08462104" sideWeight="0.4226804" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.08462104" sideWeight="0.57731956" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32635468" sideWeight="0.34561285" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -647,7 +667,8 @@
     <MESSAGE value="back ground" />
     <MESSAGE value="stem : h 0 =3" />
     <MESSAGE value="hat angle in spriteO" />
-    <option name="LAST_COMMIT_MESSAGE" value="hat angle in spriteO" />
+    <MESSAGE value="bug when reseting" />
+    <option name="LAST_COMMIT_MESSAGE" value="bug when reseting" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -963,7 +984,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="220">
           <caret line="11" column="58" lean-forward="false" selection-start-line="11" selection-start-column="58" selection-end-line="11" selection-end-column="58" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -971,23 +991,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="25" column="42" lean-forward="false" selection-start-line="25" selection-start-column="42" selection-end-line="25" selection-end-column="42" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/30_waterlilies.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-20">
-          <caret line="87" column="58" lean-forward="false" selection-start-line="87" selection-start-column="58" selection-end-line="87" selection-end-column="58" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/20_one_waterlily.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="52" column="56" lean-forward="false" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -999,17 +1002,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-206">
+          <caret line="37" column="39" lean-forward="true" selection-start-line="37" selection-start-column="39" selection-end-line="37" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/20_one_waterlily.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20">
+          <caret line="52" column="56" lean-forward="false" selection-start-line="52" selection-start-column="56" selection-end-line="52" selection-end-column="56" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/10_socle.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="407">
-          <caret line="31" column="21" lean-forward="false" selection-start-line="31" selection-start-column="21" selection-end-line="31" selection-end-column="21" />
+        <state relative-caret-position="340">
+          <caret line="23" column="18" lean-forward="false" selection-start-line="23" selection-start-column="18" selection-end-line="23" selection-end-column="36" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/40_mouse.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="94">
+        <state relative-caret-position="900">
           <caret line="54" column="0" lean-forward="true" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
           <folding />
         </state>
@@ -1017,16 +1036,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/50_sprite.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="22" column="20" lean-forward="false" selection-start-line="22" selection-start-column="20" selection-end-line="22" selection-end-column="33" />
+        <state relative-caret-position="340">
+          <caret line="40" column="17" lean-forward="false" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
+    <entry file="file://$PROJECT_DIR$/src/states/30_waterlilies.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="114">
-          <caret line="31" column="23" lean-forward="true" selection-start-line="31" selection-start-column="23" selection-end-line="31" selection-end-column="23" />
+        <state relative-caret-position="440">
+          <caret line="88" column="13" lean-forward="false" selection-start-line="88" selection-start-column="13" selection-end-line="88" selection-end-column="13" />
           <folding />
         </state>
       </provider>
