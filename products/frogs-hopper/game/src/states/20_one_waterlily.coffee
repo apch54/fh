@@ -45,7 +45,8 @@ class Phacker.Game.One_waterlily
         y0 -= @glob.cylinder.h - 5 # draw hat comomn
         #console.log "- #{@_fle_} : ",@glob.ellipse.h , s ,y0, s
         @hat = @wl.create x0, y0, "ellipse"
-        @hat.body.setSize(60, 25, 60, 75)# w, h, offset x, offset y
+        @hat.body.setSize( @gm.gameOptions.leaf_w, @gm.gameOptions.leaf_h,(180 - @gm.gameOptions.leaf_w) / 2, (100 - @gm.gameOptions.leaf_h) ) #60, 25, 60, 75)# w, h, offset x, offset y
+        console.log "- #{@_fle_} : ",@gm.gameOptions.leaf_w
         @hat.scale.setTo(scale, scale)
         @hat.anchor.setTo  .5, 1
         @hat.body.immovable = true

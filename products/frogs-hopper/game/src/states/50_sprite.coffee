@@ -41,7 +41,7 @@ class Phacker.Game.Sprite
             vx:  @gm.gameOptions.jump_power
             g: 700 # gravity
 
-        @spt = @gm.add.sprite @wls[0].position.top.x, @wls[0].position.top.y  - 20, 'character_sprite', 6 #35x60
+        @spt = @gm.add.sprite @wls[0].position.top.x, @wls[0].position.top.y  - @wls[0].hat.body.height - 10, 'character_sprite', 6 #35x60
         @gm.physics.arcade.enable @spt,Phaser.Physics.ARCADE
         @spt.body.gravity.y = @glob.jmp.g
         @spt.body.setSize(70, 30, 1, 47) # w, h, offset x, offset y
@@ -93,9 +93,10 @@ class Phacker.Game.Sprite
             if  wly.key is "ellipse"
                 #console.log "- #{@_fle_} : ",wly.flower_visible
                 if  -10 < (wly.y - spt.y - wly.body.height) < 10
+                    console.log "- #{@_fle_} : ", wly.y - spt.y - wly.body.height
                     if wly.flower_visible  then @glob.spt.message = "bonus"
                     else    @glob.spt.message = "win"
-                    @tween_go_center(wly.x , wly.y - spt.body.height / 2)
+                    @tween_go_center(wly.x , wly.y - @wls[0].hat.body.height - 5)
 
                 else @glob.spt.message = "loose ellipse"
             else @glob.spt.message = "loose cylinder"

@@ -114,7 +114,8 @@
       }
       y0 -= this.glob.cylinder.h - 5;
       this.hat = this.wl.create(x0, y0, "ellipse");
-      this.hat.body.setSize(60, 25, 60, 75);
+      this.hat.body.setSize(this.gm.gameOptions.leaf_w, this.gm.gameOptions.leaf_h, (180 - this.gm.gameOptions.leaf_w) / 2, 100 - this.gm.gameOptions.leaf_h);
+      console.log("- " + this._fle_ + " : ", this.gm.gameOptions.leaf_w);
       this.hat.scale.setTo(scale, scale);
       this.hat.anchor.setTo(.5, 1);
       this.hat.body.immovable = true;
@@ -459,7 +460,7 @@
         vx: this.gm.gameOptions.jump_power,
         g: 700
       };
-      this.spt = this.gm.add.sprite(this.wls[0].position.top.x, this.wls[0].position.top.y - 20, 'character_sprite', 6);
+      this.spt = this.gm.add.sprite(this.wls[0].position.top.x, this.wls[0].position.top.y - this.wls[0].hat.body.height - 10, 'character_sprite', 6);
       this.gm.physics.arcade.enable(this.spt, Phaser.Physics.ARCADE);
       this.spt.body.gravity.y = this.glob.jmp.g;
       this.spt.body.setSize(70, 30, 1, 47);
@@ -510,12 +511,13 @@
         this.glob.spt.max_height = spt.y + 10;
         if (wly.key === "ellipse") {
           if ((-10 < (ref = wly.y - spt.y - wly.body.height) && ref < 10)) {
+            console.log("- " + this._fle_ + " : ", wly.y - spt.y - wly.body.height);
             if (wly.flower_visible) {
               this.glob.spt.message = "bonus";
             } else {
               this.glob.spt.message = "win";
             }
-            return this.tween_go_center(wly.x, wly.y - spt.body.height / 2);
+            return this.tween_go_center(wly.x, wly.y - this.wls[0].hat.body.height - 5);
           } else {
             return this.glob.spt.message = "loose ellipse";
           }
