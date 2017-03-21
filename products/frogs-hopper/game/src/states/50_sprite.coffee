@@ -1,5 +1,5 @@
 # fc on 2017-02-25
-#        __   __
+#         __   __
 #       /  \ /  \
 #      | @) | @) |
 #     /           \
@@ -93,7 +93,7 @@ class Phacker.Game.Sprite
             if  wly.key is "ellipse"
                 #console.log "- #{@_fle_} : ",wly.flower_visible
                 if  -10 < (wly.y - spt.y - wly.body.height) < 10
-                    console.log "- #{@_fle_} : ", wly.y - spt.y - wly.body.height
+                    #console.log "- #{@_fle_} : ", wly.y - spt.y - wly.body.height
                     if wly.flower_visible  then @glob.spt.message = "bonus"
                     else    @glob.spt.message = "win"
                     @tween_go_center(wly.x , wly.y - @wls[0].hat.body.height - 5)

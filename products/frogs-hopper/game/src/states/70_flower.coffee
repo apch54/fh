@@ -18,8 +18,8 @@ class Phacker.Game.Flower
   #.----------.----------
   make_flower: ->
 
-      yy =  @prm.y0 - @gm.rnd.integerInRange 20, 35 # choose animation
-      xx = @gm.rnd.integerInRange 20, 50 # choose animation
+      yy =  @prm.y0 - @gm.rnd.integerInRange(25, 40) * @prm.scale # choose animation
+      xx = @gm.rnd.integerInRange(25, 55) * @prm.scale # choose animation
       xx = if @prm.way is 'left' then @prm.x0 - xx else  @prm.x0 + xx
 
       @flw = @gm.add.sprite xx ,yy, 'bonus'  #2 9x 29

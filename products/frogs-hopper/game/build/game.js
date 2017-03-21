@@ -141,7 +141,8 @@
         x0: this.position.top.x,
         y0: this.position.top.y,
         way: this.prm.way,
-        visible: vsi
+        visible: vsi,
+        scale: this.prm.scale
       });
       return this.hat.flower_visible = vsi;
     };
@@ -511,7 +512,6 @@
         this.glob.spt.max_height = spt.y + 10;
         if (wly.key === "ellipse") {
           if ((-10 < (ref = wly.y - spt.y - wly.body.height) && ref < 10)) {
-            console.log("- " + this._fle_ + " : ", wly.y - spt.y - wly.body.height);
             if (wly.flower_visible) {
               this.glob.spt.message = "bonus";
             } else {
@@ -654,8 +654,8 @@
 
     Flower.prototype.make_flower = function() {
       var xx, yy;
-      yy = this.prm.y0 - this.gm.rnd.integerInRange(20, 35);
-      xx = this.gm.rnd.integerInRange(20, 50);
+      yy = this.prm.y0 - this.gm.rnd.integerInRange(25, 40) * this.prm.scale;
+      xx = this.gm.rnd.integerInRange(25, 55) * this.prm.scale;
       xx = this.prm.way === 'left' ? this.prm.x0 - xx : this.prm.x0 + xx;
       this.flw = this.gm.add.sprite(xx, yy, 'bonus');
       this.flw.anchor.setTo(0.5, 1);

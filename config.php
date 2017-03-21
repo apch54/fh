@@ -22,11 +22,11 @@ $gameOptions = array(
     //
     // leaf #must be# :    0 < leaf_w < 180    &   10 < leaf_h < 50 ( leaf size: 180 x 100)
     // leaf_w  is fixed at the midle of the x axis of leaf
-    // so it leaves some blank pixels at the extremities
+    // so it does't collide with some pixels at the extremities 
     //
-    // leaf_h is fixed at the bottom  and it leaves some blank pixels only on top 
+    // leaf_h is fixed at the bottom  and it   collides with some pixels  only on bottom 
     'leaf_w' => 60,
-    'leaf_h' => 50
+    'leaf_h' => 40
 
 
 

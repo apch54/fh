@@ -106,7 +106,6 @@ class Phacker.Game.Waterlilies
             @wls[2].alpha 1
             @wls[2].finalize dx # finalise wly after a jump
 
-
     #.----------.----------
     # bind obj with sprite
     bind_spt:(spt)-> @spt = spt
