@@ -115,7 +115,6 @@
       y0 -= this.glob.cylinder.h - 5;
       this.hat = this.wl.create(x0, y0, "ellipse");
       this.hat.body.setSize(this.gm.gameOptions.leaf_w, this.gm.gameOptions.leaf_h, (180 - this.gm.gameOptions.leaf_w) / 2, 100 - this.gm.gameOptions.leaf_h);
-      console.log("- " + this._fle_ + " : ", this.gm.gameOptions.leaf_w);
       this.hat.scale.setTo(scale, scale);
       this.hat.anchor.setTo(.5, 1);
       this.hat.body.immovable = true;
@@ -398,7 +397,7 @@
 
     My_mouse.prototype.when_down = function() {
       var dt, dy, wly;
-      wly = this.wls[1];
+      wly = this.wls[0];
       if (this.glob.mouse.down) {
         wly.hat.bringToTop();
         dt = new Date().getTime() - this.glob.mouse.down_ms;

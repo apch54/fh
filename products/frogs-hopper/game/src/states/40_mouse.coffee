@@ -41,7 +41,7 @@ class Phacker.Game.My_mouse
     #.----------.----------
     when_down: () ->
         #l = @wls.length
-        wly = @wls[1]
+        wly = @wls[0]
         if  @glob.mouse.down #and @mouse.down_ms > 0
             wly.hat.bringToTop()
             dt = new Date().getTime() - @glob.mouse.down_ms

@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="0935c1d8-2c6e-459e-a360-2d544488b447" name="Default" comment="place of the flower">
+    <list default="true" id="0935c1d8-2c6e-459e-a360-2d544488b447" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build/game.js" afterPath="$PROJECT_DIR$/build/game.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/20_one_waterlily.coffee" afterPath="$PROJECT_DIR$/src/states/20_one_waterlily.coffee" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/states/40_mouse.coffee" afterPath="$PROJECT_DIR$/src/states/40_mouse.coffee" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -60,21 +63,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="40_mouse.coffee" pinned="false" current-in-tab="false">
+      <file leaf-file-name="40_mouse.coffee" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/states/40_mouse.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1080">
-              <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
+            <state relative-caret-position="244">
+              <caret line="43" column="20" lean-forward="false" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="jeu.coffee" pinned="false" current-in-tab="true">
+      <file leaf-file-name="jeu.coffee" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
+            <state relative-caret-position="440">
               <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="20_one_waterlily.coffee" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/states/20_one_waterlily.coffee">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-510">
+              <caret line="28" column="46" lean-forward="true" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
               <folding />
             </state>
           </provider>
@@ -92,7 +105,6 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>@glob.spt.message</find>
-      <find>con</find>
       <find>scale</find>
       <find>c</find>
       <find>conso</find>
@@ -120,7 +132,7 @@
       <find>on</find>
       <find>mouse</find>
       <find>reseting</find>
-      <find>co</find>
+      <find>con</find>
     </findStrings>
     <replaceStrings>
       <replace>@prm</replace>
@@ -140,14 +152,14 @@
         <option value="$PROJECT_DIR$/src/states/gggggggggggggg.coffee" />
         <option value="$PROJECT_DIR$/src/states/60_camera.coffee" />
         <option value="$PROJECT_DIR$/src/states/70_fowers.coffee" />
-        <option value="$PROJECT_DIR$/src/states/40_mouse.coffee" />
         <option value="$PROJECT_DIR$/src/states/80_effect.coffee" />
         <option value="$PROJECT_DIR$/src/states/10_socle.coffee" />
         <option value="$PROJECT_DIR$/src/states/30_waterlilies.coffee" />
-        <option value="$PROJECT_DIR$/src/states/20_one_waterlily.coffee" />
         <option value="$PROJECT_DIR$/src/states/70_flower.coffee" />
         <option value="$PROJECT_DIR$/src/states/jeu.coffee" />
         <option value="$PROJECT_DIR$/src/states/50_sprite.coffee" />
+        <option value="$PROJECT_DIR$/src/states/20_one_waterlily.coffee" />
+        <option value="$PROJECT_DIR$/src/states/40_mouse.coffee" />
       </list>
     </option>
   </component>
@@ -187,9 +199,9 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="388" />
-    <option name="y" value="24" />
-    <option name="width" value="1180" />
+    <option name="x" value="313" />
+    <option name="y" value="38" />
+    <option name="width" value="1517" />
     <option name="height" value="968" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -224,6 +236,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -257,7 +270,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -435,7 +447,8 @@
       <workItem from="1490090145562" duration="2301000" />
       <workItem from="1490115401133" duration="6099000" />
       <workItem from="1490121977918" duration="274000" />
-      <workItem from="1490122379719" duration="71000" />
+      <workItem from="1490122379719" duration="698000" />
+      <workItem from="1490343094258" duration="369000" />
     </task>
     <task id="LOCAL-00001" summary="loose over w[1]&#10;setror in one waterly">
       <created>1489651240614</created>
@@ -584,11 +597,18 @@
       <option name="project" value="LOCAL" />
       <updated>1490091151832</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="tout semble correct">
+      <created>1490122469259</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1490122469259</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="349970000" />
+    <option name="totallyTimeSpent" value="350966000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -600,29 +620,29 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="388" y="24" width="1180" height="968" extended-state="0" />
-    <editor active="false" />
+    <frame x="313" y="38" width="1517" height="968" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23146223" sideWeight="0.4484536" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30892858" sideWeight="0.5515464" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Gulp" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24159232" sideWeight="0.4621993" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.24159232" sideWeight="0.53780067" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32635468" sideWeight="0.34561285" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22657253" sideWeight="0.5068493" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28325123" sideWeight="0.6543871" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24967907" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32991013" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29433498" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881773" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.28325123" sideWeight="0.6543871" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32881773" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29433498" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -674,7 +694,8 @@
     <MESSAGE value="jump power in config.php" />
     <MESSAGE value="leaf size in config" />
     <MESSAGE value="place of the flower" />
-    <option name="LAST_COMMIT_MESSAGE" value="place of the flower" />
+    <MESSAGE value="tout semble correct" />
+    <option name="LAST_COMMIT_MESSAGE" value="tout semble correct" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1018,25 +1039,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/20_one_waterlily.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1620">
-          <caret line="81" column="22" lean-forward="false" selection-start-line="81" selection-start-column="22" selection-end-line="81" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/states/70_flower.coffee">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="360">
           <caret line="18" column="17" lean-forward="false" selection-start-line="18" selection-start-column="17" selection-end-line="18" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/states/40_mouse.coffee">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="54" column="0" lean-forward="false" selection-start-line="54" selection-start-column="0" selection-end-line="54" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1050,8 +1056,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/states/jeu.coffee">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
+        <state relative-caret-position="440">
           <caret line="22" column="23" lean-forward="false" selection-start-line="22" selection-start-column="23" selection-end-line="22" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/20_one_waterlily.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-510">
+          <caret line="28" column="46" lean-forward="true" selection-start-line="28" selection-start-column="46" selection-end-line="28" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/states/40_mouse.coffee">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="43" column="20" lean-forward="false" selection-start-line="43" selection-start-column="20" selection-end-line="43" selection-end-column="20" />
           <folding />
         </state>
       </provider>
