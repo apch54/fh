@@ -42,7 +42,7 @@ class Phacker.Game.One_waterlily
             c.anchor.setTo  .5, 1
             c.alpha = if @prm.init < 2 then 1 else 0
 
-        y0 -= @glob.cylinder.h - 5 # draw hat comomn
+        y0 -= @glob.cylinder.h - 3 # draw hat comomn
         #console.log "- #{@_fle_} : ",@glob.ellipse.h , s ,y0, s
         @hat = @wl.create x0, y0, "ellipse"
         @hat.body.setSize( @gm.gameOptions.leaf_w, @gm.gameOptions.leaf_h,(180 - @gm.gameOptions.leaf_w) / 2, (100 - @gm.gameOptions.leaf_h) ) #60, 25, 60, 75)# w, h, offset x, offset y
@@ -112,7 +112,7 @@ class Phacker.Game.One_waterlily
             stem.y = y
             stem.scale.setTo scl, scl
 
-        y -=  @glob.cylinder.h * scl
+        y -=  @glob.cylinder.h * scl - 3
         @hat.y = y
         @hat.scale.setTo scl, scl
 

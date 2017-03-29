@@ -112,7 +112,7 @@
         c.anchor.setTo(.5, 1);
         c.alpha = this.prm.init < 2 ? 1 : 0;
       }
-      y0 -= this.glob.cylinder.h - 5;
+      y0 -= this.glob.cylinder.h - 3;
       this.hat = this.wl.create(x0, y0, "ellipse");
       this.hat.body.setSize(this.gm.gameOptions.leaf_w, this.gm.gameOptions.leaf_h, (180 - this.gm.gameOptions.leaf_w) / 2, 100 - this.gm.gameOptions.leaf_h);
       this.hat.scale.setTo(scale, scale);
@@ -183,7 +183,7 @@
         stem.y = y;
         stem.scale.setTo(scl, scl);
       }
-      y -= this.glob.cylinder.h * scl;
+      y -= this.glob.cylinder.h * scl - 3;
       this.hat.y = y;
       this.hat.scale.setTo(scl, scl);
       return this.position.top.y = y;
@@ -371,8 +371,8 @@
     }
 
     My_mouse.prototype.bg_set_mouse_event = function() {
-      this.socleO.bg_btn.events.onInputDown.add(this.on_mouse_down, this);
-      return this.socleO.bg_btn.events.onInputUp.add(this.on_mouse_up, this);
+      this.gm.input.onDown.add(this.on_mouse_down, this);
+      return this.gm.input.onUp.add(this.on_mouse_up, this);
     };
 
     My_mouse.prototype.on_mouse_down = function() {
@@ -382,17 +382,21 @@
     };
 
     My_mouse.prototype.on_mouse_up = function() {
-      var l, wly;
+      if (!this.glob.mouse.down) {
+        return;
+      }
       this.glob.mouse.down = false;
       this.glob.mouse.dt = new Date().getTime() - this.glob.mouse.down_ms;
+      console.log("- " + this._fle_ + " : ", this.glob.mouse.dt);
       if (this.glob.mouse.dt > this.glob.mouse.maxTime) {
         this.glob.mouse.dt = this.glob.mouse.maxTime;
       }
-      this.glob.mouse.dt = 4.5 / 7 * this.glob.mouse.dt + 250;
-      this.glob.mouse.down_ms = 0;
-      l = this.wls.length;
-      wly = this.wls[l - 2];
-      return wly.twn_climb.start();
+      if (this.glob.mouse.dt < 200) {
+        this.glob.mouse.dt = 0;
+      } else {
+        this.glob.mouse.dt = 5 / 7 * this.glob.mouse.dt + 200;
+      }
+      return this.glob.mouse.down_ms = 0;
     };
 
     My_mouse.prototype.when_down = function() {
@@ -401,7 +405,10 @@
       if (this.glob.mouse.down) {
         wly.hat.bringToTop();
         dt = new Date().getTime() - this.glob.mouse.down_ms;
-        dy = Math.floor(dt / this.glob.mouse.maxTime * 50);
+        if (dt < 200) {
+          return;
+        }
+        dy = 50 * dt / (this.glob.mouse.maxTime - 200) - 20;
         if (dy >= 50) {
           dy = 50;
         }
@@ -413,6 +420,7 @@
     };
 
     My_mouse.prototype.reset = function() {
+      this.gm.input.reset();
       return this.glob.mouse = {
         x: 0,
         y: 0,
