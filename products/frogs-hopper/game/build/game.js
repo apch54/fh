@@ -376,6 +376,9 @@
     };
 
     My_mouse.prototype.on_mouse_down = function() {
+      if ((this.spriteO == null) && this.spriteO.glob.spt.jumping) {
+        return;
+      }
       this.glob.mouse.down = true;
       this.glob.mouse.down_ms = new Date().getTime();
       return this.glob.mouse.dt = 0;
@@ -385,9 +388,11 @@
       if (!this.glob.mouse.down) {
         return;
       }
+      if ((this.spriteO == null) && this.spriteO.glob.spt.jumping) {
+        return;
+      }
       this.glob.mouse.down = false;
       this.glob.mouse.dt = new Date().getTime() - this.glob.mouse.down_ms;
-      console.log("- " + this._fle_ + " : ", this.glob.mouse.dt);
       if (this.glob.mouse.dt > this.glob.mouse.maxTime) {
         this.glob.mouse.dt = this.glob.mouse.maxTime;
       }
@@ -401,6 +406,9 @@
 
     My_mouse.prototype.when_down = function() {
       var dt, dy, wly;
+      if ((this.spriteO == null) && this.spriteO.glob.spt.jumping) {
+        return;
+      }
       wly = this.wls[0];
       if (this.glob.mouse.down) {
         wly.hat.bringToTop();
@@ -432,8 +440,9 @@
       };
     };
 
-    My_mouse.prototype.bind = function(waterliliesO) {
-      return this.wls = waterliliesO.wls;
+    My_mouse.prototype.bind = function(waterliliesO, spriteO) {
+      this.wls = waterliliesO.wls;
+      return this.spriteO = spriteO;
     };
 
     return My_mouse;
@@ -749,7 +758,9 @@
         this.winBonus();
       }
       this.spriteO.jump();
-      this.mouseO.when_down();
+      if (!this.spriteO.glob.spt.jumping) {
+        this.mouseO.when_down();
+      }
       this.camO.move(this.spt);
       mess2 = this.spriteO.check_height(this.spt);
       if (mess2 === 'loose') {
@@ -781,10 +792,10 @@
       this.mouseO = new Phacker.Game.My_mouse(this.game, this.socleO);
       this.waterliliesO = new Phacker.Game.Waterlilies(this.game);
       this.wls = this.waterliliesO.wls;
-      this.mouseO.bind(this.waterliliesO);
       this.spriteO = new Phacker.Game.Sprite(this.game, this.waterliliesO, this.mouseO);
       this.spt = this.spriteO.spt;
       this.waterliliesO.bind_spt(this.spt);
+      this.mouseO.bind(this.waterliliesO, this.spriteO);
       this.camO = new Phacker.Game.My_camera(this.game, this.waterliliesO);
       this.effectO = new Phacker.Game.Effects(this.game);
       return this.glob = this.game.ge.parameters;

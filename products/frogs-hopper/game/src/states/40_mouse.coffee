@@ -11,13 +11,14 @@ class Phacker.Game.My_mouse
     #.----------.----------
     # mouse init & pointer follow mouse
     #.----------.----------
-    bg_set_mouse_event: -> # not used
+    bg_set_mouse_event: ->
          #@socleO.bg_btn.events.onInputDown.add @on_mouse_down, @
          #@socleO.bg_btn.events.onInputUp.add @on_mouse_up, @
          @gm.input.onDown.add @on_mouse_down, @
          @gm.input.onUp.add @on_mouse_up, @
 
     on_mouse_down: ->
+        if not @spriteO?  and @spriteO.glob.spt.jumping then return
         @glob.mouse.down = true
         @glob.mouse.down_ms = new Date().getTime()
         @glob.mouse.dt = 0
@@ -25,9 +26,9 @@ class Phacker.Game.My_mouse
 
     on_mouse_up: ->
         if  not @glob.mouse.down then return
+        if not @spriteO?  and @spriteO.glob.spt.jumping then return
         @glob.mouse.down = false
         @glob.mouse.dt = new Date().getTime() - @glob.mouse.down_ms
-        console.log "- #{@_fle_} : ",@glob.mouse.dt
         if @glob.mouse.dt > @glob.mouse.maxTime then  @glob.mouse.dt = @glob.mouse.maxTime
 
         if @glob.mouse.dt < 200  then    @glob.mouse.dt = 0 # mini = 200ms
@@ -46,6 +47,7 @@ class Phacker.Game.My_mouse
     #.----------.----------
     when_down: () ->
         #l = @wls.length
+        if not @spriteO?  and @spriteO.glob.spt.jumping then return
         wly = @wls[0]
         if  @glob.mouse.down #and @mouse.down_ms > 0
             wly.hat.bringToTop()
@@ -56,8 +58,6 @@ class Phacker.Game.My_mouse
             if dy >= 50 then dy= 50
             wly.hat.y = wly.position.top.y + dy
             if wly.flw? then wly.flw.flw.y = wly.position.top.y + dy - 20
-
-
 
     #.----------.----------
     # reset mouse
@@ -77,5 +77,7 @@ class Phacker.Game.My_mouse
 
 
     # bind mouse with sprite
-    bind: (waterliliesO) ->   @wls = waterliliesO.wls
+    bind: (waterliliesO, spriteO) ->
+        @wls = waterliliesO.wls
+        @spriteO = spriteO
 

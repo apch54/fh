@@ -21,7 +21,7 @@ class @YourGame extends Phacker.GameState
 
         #console.log "- #{@_fle_} : ",mess
         @spriteO.jump()
-        @mouseO.when_down()
+        @mouseO.when_down() if not @spriteO.glob.spt.jumping
         @camO.move @spt
 
         mess2 = @spriteO.check_height(@spt)
@@ -58,11 +58,11 @@ class @YourGame extends Phacker.GameState
 
         @waterliliesO = new Phacker.Game.Waterlilies(@game)
         @wls = @waterliliesO.wls #array of lilies
-        @mouseO.bind @waterliliesO
 
         @spriteO = new Phacker.Game.Sprite @game, @waterliliesO, @mouseO
         @spt = @spriteO.spt
         @waterliliesO.bind_spt @spt
+        @mouseO.bind @waterliliesO, @spriteO
 
         @camO = new Phacker.Game.My_camera @game , @waterliliesO
         @effectO = new Phacker.Game.Effects @game
