@@ -184,8 +184,8 @@
         stem.scale.setTo(scl, scl);
       }
       y -= this.glob.cylinder.h * scl - 3;
-      this.hat.y = y;
       this.hat.scale.setTo(scl, scl);
+      this.hat.y = y;
       return this.position.top.y = y;
     };
 
@@ -240,6 +240,8 @@
       this._fle_ = 'Waterlilies';
       this.glob = this.gm.ge.parameters;
       this.scale_a = [.75, .67, .60, .53];
+      this.dxg = [120, 130, 140, 150, 160];
+      this.dyg = [71, 77, 82, 88, 94];
       this.glob.wly = {
         x0: this.gm.gameOptions.fullscreen ? this.glob.bg.w - 70 : this.glob.bg.w - 250,
         y0: this.glob.bg.h + 20,
@@ -271,8 +273,8 @@
       } else if (this.wls.length === 1) {
         this.wls.push(new Phacker.Game.One_waterlily(this.gm, {
           h: this.glob.wly.h0,
-          x: this.glob.bg.middleX - 130,
-          y: this.glob.wly.y0 - 77,
+          x: this.glob.bg.middleX - this.dxg[1],
+          y: this.glob.wly.y0 - this.dyg[1],
           scale: this.glob.wly.scale0,
           init: 1,
           way: 'left'
@@ -294,13 +296,13 @@
       wway = this.left_or_right[this.gm.rnd.integerInRange(0, 1)];
       if (this.gm.ge.score < 50) {
         hh = this.glob.wly.h0;
-        xx = wway === "left" ? x0 - 130 : x0 + 130;
-        yy = y0 - 77;
+        xx = wway === "left" ? x0 - this.dxg[1] : x0 + this.dxg[1];
+        yy = y0 - this.dyg[1];
         scl = this.glob.wly.scale0;
       } else if (this.gm.ge.score < 100) {
         hh = this.glob.wly.h0;
-        xx = wway === "left" ? x0 - 130 : x0 + 130;
-        yy = y0 - 77;
+        xx = wway === "left" ? x0 - this.dxg[1] : x0 + this.dxg[1];
+        yy = y0 - this.dyg[1];
         scl = this.scale_a[this.gm.rnd.integerInRange(0, 3)];
       } else if (this.gm.ge.score < 150) {
         if (this.wls[0].prm.way === wway) {
@@ -309,20 +311,18 @@
           dx = this.gm.rnd.integerInRange(2, 2);
         }
         hh = this.glob.wly.h0;
-        dx = (3 + dx) * this.glob.wly.dxmax / 9;
-        xx = wway === 'left' ? x0 - dx : x0 + dx;
-        yy = y0 - this.glob.wly.tan * dx;
+        xx = wway === 'left' ? x0 - this.dxg[dx] : x0 + this.dxg[dx];
+        yy = y0 - this.dyg[dx];
         scl = this.scale_a[this.gm.rnd.integerInRange(0, 3)];
       } else {
         if (this.wls[0].prm.way === wway) {
-          dx = this.gm.rnd.integerInRange(1, 3);
+          dx = this.gm.rnd.integerInRange(0, 4);
         } else {
           dx = this.gm.rnd.integerInRange(2, 2);
         }
         hh = this.gm.rnd.integerInRange(2, 4);
-        dx = (3 + dx) * this.glob.wly.dxmax / 9;
-        xx = wway === 'left' ? x0 - dx : x0 + dx;
-        yy = y0 - this.glob.wly.tan * dx;
+        xx = wway === 'left' ? x0 - this.dxg[dx] : x0 + this.dxg[dx];
+        yy = y0 - this.dyg[dx];
         scl = this.scale_a[this.gm.rnd.integerInRange(0, 3)];
       }
       return {

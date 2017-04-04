@@ -113,8 +113,8 @@ class Phacker.Game.One_waterlily
             stem.scale.setTo scl, scl
 
         y -=  @glob.cylinder.h * scl - 3
-        @hat.y = y
         @hat.scale.setTo scl, scl
+        @hat.y = y
 
         @position.top.y = y
         #@prm.scale = scl
